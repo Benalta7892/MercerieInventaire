@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_20_181915) do
+ActiveRecord::Schema[7.1].define(version: 2026_01_20_182151) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,16 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_20_181915) do
     t.index ["user_id"], name: "index_fournitures_on_user_id"
   end
 
+  create_table "liste_achat_items", force: :cascade do |t|
+    t.decimal "quantity"
+    t.bigint "liste_achat_id", null: false
+    t.bigint "fourniture_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fourniture_id"], name: "index_liste_achat_items_on_fourniture_id"
+    t.index ["liste_achat_id"], name: "index_liste_achat_items_on_liste_achat_id"
+  end
+
   create_table "liste_achats", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -59,5 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_20_181915) do
   add_foreign_key "categories", "users"
   add_foreign_key "fournitures", "categories"
   add_foreign_key "fournitures", "users"
+  add_foreign_key "liste_achat_items", "fournitures"
+  add_foreign_key "liste_achat_items", "liste_achats"
   add_foreign_key "liste_achats", "users"
 end
