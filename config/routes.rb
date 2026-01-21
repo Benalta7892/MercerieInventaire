@@ -9,4 +9,22 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  #
+  # Dashboard
+  resource :dashboard, only: [:show]
+
+  # Catégories
+  resources :categories
+
+  # Fournitures
+  resources :fournitures do
+    collection do
+      get :stock_bas
+    end
+  end
+
+  # Liste d'achat
+  resource :liste_achat, only: [:show] do
+    resources :items, only: [:create, :destroy], module: :liste_achat
+  end
 end
