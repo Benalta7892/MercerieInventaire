@@ -3,7 +3,10 @@
 
 <ul>
   <% @fournitures.each do |f| %>
-    <li><%= link_to f.name, fourniture_path(f) %> — <%= f.quantity %> <%= f.unit %></li>
+    <li>
+      <%= link_to f.name, fourniture_path(f) %> — <%= f.quantity %> <%= f.unit %>
+      <%= button_to "Ajouter à la liste d'achat", liste_achat_items_path(fourniture_id: f.id), method: :post %>
+    </li>
   <% end %>
 </ul>
 

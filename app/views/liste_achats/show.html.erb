@@ -1,2 +1,25 @@
 <h1>ListeAchats#show</h1>
 <p>Find me in app/views/liste_achats/show.html.erb</p>
+
+<% if @items.empty? %>
+  <p>Aucune fourniture dans la liste pour le moment.</p>
+<% else %>
+  <ul>
+    <% @items.each do |item| %>
+      <li>
+        <strong><%= item.fourniture.name %></strong>
+        <% if item.quantity.present? %>
+          — Quantité: <%= item.quantity %>
+        <% end %>
+
+        <%= button_to "Retirer",
+              "/liste_achat/items/#{item.id}",
+              method: :delete,
+              data: { turbo_confirm: "Retirer de la liste ?" } %>
+
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p><%= link_to "Retour aux fournitures", fournitures_path %></p>
