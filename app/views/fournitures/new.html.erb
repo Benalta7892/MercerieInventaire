@@ -1,0 +1,13 @@
+<h1>Fournitures#new</h1>
+<p>Find me in app/views/fournitures/new.html.erb</p>
+
+
+<%= simple_form_for @fourniture do |f| %>
+  <%= f.input :name %>
+  <%= f.input :category_id, collection: current_user.categories.order(:name), label_method: :name, value_method: :id %>
+  <%= f.input :quantity %>
+  <%= f.input :unit %>
+  <%= f.input :color %>
+  <%= f.input :description %>
+  <%= f.submit "Créer" %>
+<% end %>

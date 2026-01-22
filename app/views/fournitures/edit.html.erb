@@ -1,0 +1,14 @@
+<h1>Fournitures#edit</h1>
+<p>Find me in app/views/fournitures/edit.html.erb</p>
+
+<h1>Modifier la fourniture</h1>
+
+<%= simple_form_for @fourniture do |f| %>
+  <%= f.input :name %>
+  <%= f.input :category_id, collection: current_user.categories.order(:name), label_method: :name, value_method: :id %>
+  <%= f.input :quantity %>
+  <%= f.input :unit %>
+  <%= f.input :color %>
+  <%= f.input :description %>
+  <%= f.submit "Mettre à jour" %>
+<% end %>

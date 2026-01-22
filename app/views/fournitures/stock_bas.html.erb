@@ -1,0 +1,10 @@
+<h1>Fournitures#stock_bas</h1>
+<p>Find me in app/views/fournitures/stock_bas.html.erb</p>
+
+<ul>
+  <% @fournitures.each do |f| %>
+    <li><%= link_to f.name, fourniture_path(f) %> — <%= f.quantity %> <%= f.unit %></li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Retour", fournitures_path %></p>
