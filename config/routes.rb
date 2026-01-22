@@ -1,20 +1,5 @@
 Rails.application.routes.draw do
-  get 'fournitures/index'
-  get 'fournitures/show'
-  get 'fournitures/new'
-  get 'fournitures/create'
-  get 'fournitures/edit'
-  get 'fournitures/update'
-  get 'fournitures/destroy'
-  get 'fournitures/stock_bas'
-  get 'categories/index'
-  get 'categories/show'
-  get 'categories/new'
-  get 'categories/create'
-  get 'categories/edit'
-  get 'categories/update'
-  get 'categories/destroy'
-  get 'dashboards/show'
+
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
