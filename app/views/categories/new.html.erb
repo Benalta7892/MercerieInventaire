@@ -1,0 +1,7 @@
+<h1>Categories#new</h1>
+<p>Find me in app/views/categories/new.html.erb</p>
+
+<%= simple_form_for @category do |f| %>
+  <%= f.input :name, label: "Nom de la catégorie" %>
+  <%= f.submit "Créer la catégorie"%>
+<% end %>
