@@ -11,12 +11,7 @@
         <% if item.quantity.present? %>
           — Quantité: <%= item.quantity %>
         <% end %>
-
-        <%= button_to "Retirer",
-              "/liste_achat/items/#{item.id}",
-              method: :delete,
-              data: { turbo_confirm: "Retirer de la liste ?" } %>
-
+        <%= button_to "Retirer de la liste", liste_achat_item_path(item), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir retirer cette fourniture de la liste d'achat ?" } %>
       </li>
     <% end %>
   </ul>
