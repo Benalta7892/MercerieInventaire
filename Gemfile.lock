@@ -152,6 +152,7 @@ GEM
       actioncable (>= 7.0.0)
       listen (>= 3.0.0)
       railties (>= 7.0.0)
+    htmlbeautifier (1.4.3)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.3)
@@ -387,6 +388,7 @@ DEPENDENCIES
   error_highlight (>= 0.4.0)
   font-awesome-sass (~> 6.1)
   hotwire-livereload (~> 2.1)
+  htmlbeautifier
   importmap-rails
   jbuilder
   pg (~> 1.1)
