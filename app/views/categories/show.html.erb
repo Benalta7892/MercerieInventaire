@@ -1,2 +1,23 @@
 <h1>Categories#show</h1>
 <p>Find me in app/views/categories/show.html.erb</p>
+
+<h2><%= @category.name %></h2>
+
+
+<% if @category.fournitures.empty? %>
+  <p>Aucune fourniture dans cette catégorie.</p>
+<% else %>
+  <ul>
+    <% @category.fournitures.each do |f| %>
+      <li>
+        <strong><%= link_to f.name, fourniture_path(f) %></strong>
+        — <%= f.quantity %> <%= f.unit %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p>
+  <%= link_to "Retour aux catégories", categories_path %> |
+  <%= link_to "Ajouter une fourniture", new_fourniture_path(category_id: @category.id) %>
+</p>
