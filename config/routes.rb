@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'fournitures/index'
+  get 'fournitures/show'
+  get 'fournitures/new'
+  get 'fournitures/create'
+  get 'fournitures/edit'
+  get 'fournitures/update'
+  get 'fournitures/destroy'
+  get 'fournitures/stock_bas'
   get 'categories/index'
   get 'categories/show'
   get 'categories/new'

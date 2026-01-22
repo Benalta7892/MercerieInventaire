@@ -1,0 +1,16 @@
+<h1>Fournitures#show</h1>
+<p>Find me in app/views/fournitures/show.html.erb</p>
+
+<h2><%= @fourniture.name %></h2>
+
+<p>Catégorie : <%= @fourniture.category&.name %></p>
+<p>Stock : <%= @fourniture.quantity %> <%= @fourniture.unit %></p>
+<p>Couleur : <%= @fourniture.color.presence || "-" %></p>
+<p>Description : <%= @fourniture.description.presence || "-" %></p>
+
+<p>
+  <%= link_to "Modifier", edit_fourniture_path(@fourniture) %> |
+  <%= link_to "Supprimer", fourniture_path(@fourniture),
+        data: { turbo_method: :delete, turbo_confirm: "Supprimer ?" } %> |
+  <%= link_to "Retour", fournitures_path %>
+</p>

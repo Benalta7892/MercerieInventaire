@@ -1,0 +1,25 @@
+<h1>Fournitures#index</h1>
+<p>Find me in app/views/fournitures/index.html.erb</p>
+
+
+<%= form_with url: fournitures_path, method: :get, local: true do %>
+  <%= text_field_tag :query, params[:query], placeholder: "Rechercher..." %>
+  <%= select_tag :category_id,
+        options_from_collection_for_select(@categories, :id, :name, params[:category_id]),
+        include_blank: "Toutes les catégories" %>
+  <%= submit_tag "Filtrer" %>
+<% end %>
+
+<p>
+  <%= link_to "Ajouter une fourniture", new_fourniture_path %> |
+  <%= link_to "Voir stock bas", stock_bas_fournitures_path %>
+</p>
+
+<ul>
+  <% @fournitures.each do |f| %>
+    <li>
+      <%= link_to f.name, fourniture_path(f) %>
+      (<%= f.category&.name %>) — <%= f.quantity %> <%= f.unit %>
+    </li>
+  <% end %>
+</ul>
