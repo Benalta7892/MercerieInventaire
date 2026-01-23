@@ -2,9 +2,11 @@
   <div class="container-fluid">
 
     <% if user_signed_in? %>
-      <%= link_to dashboard_path, class: "navbar-brand" do %>
-        <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+      <%= link_to dashboard_path, class: "navbar-brand fw-semibold" do %>
+        <span class="text-primary fw-bold">M</span>ercerie
+        <span class="text-primary fw-bold">I</span>nventaire
       <% end %>
+
     <% else %>
       <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
@@ -44,6 +46,8 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Mes catégories", categories_path, class: "dropdown-item" %>
+              <%= link_to "Fournitures", fournitures_path, class: "dropdown-item" %>
+              <%= link_to "Stocks bas", stock_bas_fournitures_path, class: "dropdown-item" %>
               <%= link_to "Liste d'achats", liste_achat_path, class: "dropdown-item" %>
               <%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
