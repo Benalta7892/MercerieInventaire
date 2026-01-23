@@ -1,28 +1,78 @@
-<h1>Fournitures#index</h1>
-<p>Find me in app/views/fournitures/index.html.erb</p>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="mb-0">Fournitures</h2>
 
+  <div class="d-flex gap-2">
+    <%= link_to "Ajouter une fourniture", new_fourniture_path, class: "btn btn-sm btn-outline-primary" %>
+    <%= link_to "Voir tout les stocks bas", stock_bas_fournitures_path, class: "btn  btn-sm btn-outline-warning" %>
+    <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-sm btn-outline-success" %>
 
-<%= form_with url: fournitures_path, method: :get, local: true do %>
-  <%= text_field_tag :query, params[:query], placeholder: "Rechercher..." %>
-  <%= select_tag :category_id,
-        options_from_collection_for_select(@categories, :id, :name, params[:category_id]),
-        include_blank: "Toutes les catégories" %>
-  <%= submit_tag "Filtrer" %>
+  </div>
+</div>
+
+<%= form_with url: fournitures_path, method: :get, local: true, class: "row g-2 mb-3" do %>
+  <div class="col-12 col-md-5">
+    <%= text_field_tag :query,
+          params[:query],
+          placeholder: "Rechercher…",
+          class: "form-control" %>
+  </div>
+
+  <div class="col-12 col-md-4">
+    <%= select_tag :category_id,
+          options_from_collection_for_select(@categories, :id, :name, params[:category_id]),
+          include_blank: "Toutes les catégories",
+          class: "form-select" %>
+  </div>
+
+  <div class="col-12 col-md-3 d-flex gap-2">
+    <%= submit_tag "Filtrer", class: "btn btn-outline-secondary w-100" %>
+
+    <%= link_to "Reset",
+          fournitures_path,
+          class: "btn btn-outline-danger w-100" %>
+  </div>
 <% end %>
 
-<p>
-  <%= link_to "Ajouter une fourniture", new_fourniture_path %> |
-  <%= link_to "Voir stock bas", stock_bas_fournitures_path %>
-</p>
+<% if @fournitures.empty? %>
+  <p class="text-muted">Aucune fourniture pour le moment.</p>
+  <%= link_to "Ajouter une fourniture", new_fourniture_path, class: "btn btn-primary btn-sm" %>
+<% else %>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Catégorie</th>
+          <th class="text-nowrap">Quantité</th>
+          <th></th>
+        </tr>
+      </thead>
 
-<ul>
-  <% @fournitures.each do |f| %>
-    <li>
-      <%= link_to f.name, fourniture_path(f) %>
-      (<%= f.category&.name %>) — <%= f.quantity %> <%= f.unit %>
-      <%= button_to "Ajouter à la liste d'achat", liste_achat_items_path(fourniture_id: f.id), method: :post %>
-    </li>
-  <% end %>
-</ul>
+      <tbody>
+        <% @fournitures.each do |f| %>
+          <tr>
+            <td>
+              <%= link_to f.name, fourniture_path(f), class: "text-decoration-none fw-semibold" %>
+              <% if f.description.present? %>
+                <div class="text-muted small"><%= truncate(f.description, length: 60) %></div>
+              <% end %>
+            </td>
 
-<p><%= link_to "Retour au Dashboard", root_path %></p>
+            <td class="text-muted"><%= f.category&.name %></td>
+
+            <td class="text-nowrap text-muted">
+              <%= f.quantity %> <%= f.unit %>
+            </td>
+
+            <td class="text-end text-nowrap">
+              <%= button_to "Ajouter à la liste",
+                    liste_achat_items_path(fourniture_id: f.id),
+                    method: :post,
+                    class: "btn btn-sm btn-outline-success" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

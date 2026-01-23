@@ -8,7 +8,8 @@ class ListeAchat::ItemsController < ApplicationController
     item.quantity ||= 1
     item.save
 
-    redirect_to liste_achat_path, notice: "Fourniture ajoutée à la liste d'achat."
+    redirect_back fallback_location: fournitures_path,
+                  notice: "Fourniture ajoutée à la liste d'achat."
   end
 
   def destroy

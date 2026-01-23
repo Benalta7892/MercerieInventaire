@@ -1,18 +1,43 @@
-<h1>Categories#index</h1>
-<p>Find me in app/views/categories/index.html.erb</p>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0">Catégories</h1>
+  <%= link_to "Nouvelle catégorie", new_category_path, class: "btn btn-outline-primary btn-sm" %>
+</div>
 
-<%= link_to "Nouvelle catégorie", new_category_path %>
+<% if @categories.empty? %>
+  <p class="text-muted">Aucune catégorie pour le moment.</p>
+  <%= link_to "Créer ma première catégorie", new_category_path, class: "btn btn-primary btn-sm" %>
+<% else %>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th class="text-nowrap">Nb fournitures</th>
+          <th></th>
+        </tr>
+      </thead>
 
-<ul>
-  <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.name, category_path(category) %>
-      <%= link_to "Éditer", edit_category_path(category) %>
-      <%= link_to "Supprimer", category_path(category), data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cette catégorie ?" } %>
-    </li>
-  <% end %>
-</ul>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td>
+              <%= link_to category.name, category_path(category), class: "text-decoration-none fw-semibold" %>
+            </td>
 
-<p>
-  <%= link_to "Retour au Dashboard", root_path %>
-</p>
+            <td class="text-muted text-nowrap">
+              <%= category.fournitures.count %>
+            </td>
+
+            <td class="text-end text-nowrap">
+              <%= link_to "Modifier", edit_category_path(category), class: "btn btn-sm btn-outline-secondary" %>
+              <%= link_to "Supprimer",
+                    category_path(category),
+                    class: "btn btn-sm btn-outline-danger",
+                    data: { turbo_method: :delete, turbo_confirm: "Supprimer cette catégorie ?" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
