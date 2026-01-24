@@ -4,3 +4,5 @@
 //= link_tree ../../../vendor/javascript .js
 //= link popper.js
 //= link bootstrap.min.js
+//= link rails_admin/application.css
+//= link rails_admin/application.js

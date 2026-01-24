@@ -81,3 +81,5 @@ group :test do
 end
 
 gem "hotwire-livereload", "~> 2.1", :group => :development
+
+gem "rails_admin", "~> 3.3"

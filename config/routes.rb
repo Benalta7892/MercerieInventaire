@@ -36,4 +36,8 @@ Rails.application.routes.draw do
   resource :liste_achat, only: [:show] do
     resources :items, only: [:create, :destroy], module: :liste_achat
   end
+
+  authenticate :user, ->(u) { u.admin? } do
+    mount RailsAdmin::Engine => "/admin", as: "rails_admin"
+  end
 end
