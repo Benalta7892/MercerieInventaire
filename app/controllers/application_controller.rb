@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(_resource)
     dashboard_path
   end
+
+  def require_admin!
+    redirect_to dashboard_path, alert: "Accès refusé." unless current_user&.admin?
+  end
 end
