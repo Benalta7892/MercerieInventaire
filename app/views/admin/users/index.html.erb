@@ -6,6 +6,7 @@
   <table class="table align-middle">
     <thead>
       <tr>
+        <th>Nom</th>
         <th>Email</th>
         <th>Admin</th>
         <th>Bloqué</th>
@@ -17,6 +18,10 @@
     <tbody>
       <% @users.each do |u| %>
         <tr>
+          <td class="fw-semibold">
+            <%= u.name.presence || "—" %>
+          </td>
+
           <td><%= link_to u.email, admin_user_path(u), class: "text-decoration-none fw-semibold" %></td>
           <td class="text-muted"><%= u.admin? ? "Oui" : "Non" %></td>
           <td class="text-muted"><%= u.blocked? ? "Oui" : "Non" %></td>
