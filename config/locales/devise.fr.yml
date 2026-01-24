@@ -6,3 +6,8 @@ fr:
       already_signed_out: "Déconnecté avec succès."
     registrations:
       signed_up: "Bienvenue ! Vous vous êtes inscrit avec succès."
+    shared:
+      links:
+        sign_in: "Connexion"
+        sign_up: "Créer un compte"
+        forgot_your_password: "Mot de passe oublié ?"
