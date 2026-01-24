@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Create an admin user if it does not exist
+admin_email = ENV.fetch("ADMIN_EMAIL").downcase
+user = User.find_by(email: admin_email)
+user&.update!(admin: true)
