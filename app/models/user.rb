@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def admin_must_be_owner_email
-    return unless admin_must_be_owner_email
+    return unless admin
 
     errors.add(:admin, "interdit") unless email.to_s.downcase == owner_email
   end
