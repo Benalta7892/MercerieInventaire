@@ -1,0 +1,33 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h1 class="h4 fw-bold mb-1">Contact</h1>
+          <p class="text-muted mb-4">Envoie-nous un message, on répondra vite.</p>
+
+          <%= form_with url: contact_path, method: :post, local: true do %>
+            <div class="mb-3">
+              <%= label_tag :name, "Nom", class: "form-label" %>
+              <%= text_field_tag :name, params[:name], class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= label_tag :email, "Email", class: "form-label" %>
+              <%= email_field_tag :email, params[:email], class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= label_tag :message, "Message", class: "form-label" %>
+              <%= text_area_tag :message, params[:message], class: "form-control", rows: 6, required: true %>
+            </div>
+
+            <div class="d-grid">
+              <%= submit_tag "Envoyer", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
