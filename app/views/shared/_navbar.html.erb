@@ -9,6 +9,19 @@
     <% end %>
 
 
+    <ul class="navbar-nav me-auto">
+      <% if !user_signed_in? && current_page?(root_path) %>
+        <li class="nav-item">
+          <a class="nav-link" href="#features">Fonctionnalités</a>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Accueil", root_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -63,7 +76,11 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
+            <div class="d-flex gap-2">
+              <%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary btn-sm" %>
+              <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+            </div>
+
           </li>
         <% end %>
       </ul>

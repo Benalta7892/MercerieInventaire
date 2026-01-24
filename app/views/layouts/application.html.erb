@@ -12,8 +12,13 @@
 
   <body><%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-    <div class="container-fluid p-4">
+    <% if controller_name == "pages" && action_name == "home" %>
       <%= yield %>
-    </div>
+    <% else %>
+      <div class="container-fluid p-4">
+        <%= yield %>
+      </div>
+    <% end %>
+
   </body>
 </html>
