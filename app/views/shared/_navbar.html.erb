@@ -1,16 +1,11 @@
 <nav class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
 
-    <% if user_signed_in? %>
-      <%= link_to dashboard_path, class: "navbar-brand fw-semibold" do %>
-        <span class="text-primary fw-bold">M</span>ercerie
-        <span class="text-primary fw-bold">I</span>nventaire
-      <% end %>
+    <% home_path = user_signed_in? ? dashboard_path : root_path %>
 
-    <% else %>
-      <%= link_to root_path, class: "navbar-brand" do %>
-        <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-      <% end %>
+    <%= link_to home_path, class: "navbar-brand fw-semibold" do %>
+      <span class="text-primary fw-bold">M</span>ercerie
+      <span class="text-primary fw-bold">I</span>nventaire
     <% end %>
 
 

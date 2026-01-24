@@ -4,3 +4,5 @@ fr:
       signed_in: "Connecté avec succès."
       signed_out: "Déconnecté avec succès."
       already_signed_out: "Déconnecté avec succès."
+    registrations:
+      signed_up: "Bienvenue ! Vous vous êtes inscrit avec succès."
