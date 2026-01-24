@@ -48,7 +48,7 @@
               <% if current_user.admin? %>
                 <%= link_to "Admin", admin_users_path, class: "dropdown-item" %>
               <% end %>
-
+              <%= link_to "Mon profil", profile_path, class: "dropdown-item" %>
               <%= link_to "Mes catégories", categories_path, class: "dropdown-item" %>
               <%= link_to "Fournitures", fournitures_path, class: "dropdown-item" %>
               <%= link_to "Stocks bas", stock_bas_fournitures_path, class: "dropdown-item" %>
