@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_blocked!
 
   protected
 
@@ -15,5 +16,12 @@ class ApplicationController < ActionController::Base
 
   def require_admin!
     redirect_to dashboard_path, alert: "Accès refusé." unless current_user&.admin?
+  end
+
+  def check_blocked!
+    return unless current_user&.blocked?
+
+    sign_out current_user
+    redirect_to new_user_session_path, alert: "Votre compte a été bloqué."
   end
 end
