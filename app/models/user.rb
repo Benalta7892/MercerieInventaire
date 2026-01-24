@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_one :liste_achat, dependent: :destroy
 
   validate :admin_must_be_owner_email
+  validates :name, presence: true
 
   after_create :initialize_liste_achat
 
