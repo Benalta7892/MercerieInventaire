@@ -45,6 +45,10 @@
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <% if current_user.admin? %>
+                <%= link_to "Admin", admin_users_path, class: "dropdown-item" %>
+              <% end %>
+
               <%= link_to "Mes catégories", categories_path, class: "dropdown-item" %>
               <%= link_to "Fournitures", fournitures_path, class: "dropdown-item" %>
               <%= link_to "Stocks bas", stock_bas_fournitures_path, class: "dropdown-item" %>

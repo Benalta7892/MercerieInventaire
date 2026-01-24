@@ -13,9 +13,7 @@ Rails.application.routes.draw do
 
   # Administration des utilisateurs
   namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    resources :users, only: [:index, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 
   # Dashboard

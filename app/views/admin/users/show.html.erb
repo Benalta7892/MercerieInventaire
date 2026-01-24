@@ -1,2 +1,43 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0"><%= @user.email %></h1>
+
+  <%= link_to "← Retour", admin_users_path, class: "btn btn-sm btn-outline-secondary" %>
+</div>
+
+<div class="card shadow-sm mb-3">
+  <div class="card-body">
+    <p><strong>Admin:</strong> <%= @user.admin? ? "Oui" : "Non" %></p>
+    <p><strong>Bloqué:</strong> <%= @user.blocked? ? "Oui" : "Non" %></p>
+  </div>
+</div>
+
+<div class="d-flex gap-2">
+  <% if @user != current_user && !@user.admin? %>
+    <% if @user.blocked? %>
+      <%= button_to "Débloquer",
+            admin_user_path(@user, blocked: false),
+            method: :patch,
+            class: "btn btn-sm btn-outline-success" %>
+    <% else %>
+      <%= button_to "Bloquer",
+            admin_user_path(@user, blocked: true),
+            method: :patch,
+            class: "btn btn-sm btn-outline-warning" %>
+    <% end %>
+
+    <%= button_to "Supprimer",
+          admin_user_path(@user),
+          method: :delete,
+          class: "btn btn-sm btn-outline-danger",
+          data: { turbo_confirm: "Supprimer ce user ?" } %>
+  <% else %>
+    <%= button_to "Supprimer",
+          admin_user_path(@user),
+          method: :delete,
+          class: "btn btn-sm btn-outline-secondary disabled",
+          data: { turbo_confirm: "Supprimer ce user ?" } %>
+
+    <span class="text-muted small">(Actions désactivées sur ton compte / admin)</span>
+
+  <% end %>
+</div>
