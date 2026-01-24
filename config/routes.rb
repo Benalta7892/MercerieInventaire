@@ -37,6 +37,12 @@ Rails.application.routes.draw do
     resources :items, only: [:create, :destroy], module: :liste_achat
   end
 
+  # Liens footer
+  get  "/contact", to: "contacts#new", as: "contact"
+  post "/contact", to: "contacts#create"
+  get "/mentions-legales", to: "pages#mentions_legales"
+  get "/confidentialite", to: "pages#confidentialite"
+
   authenticate :user, ->(u) { u.admin? } do
     mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   end

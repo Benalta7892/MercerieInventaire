@@ -11,3 +11,5 @@ fr:
         sign_in: "Connexion"
         sign_up: "Créer un compte"
         forgot_your_password: "Mot de passe oublié ?"
+    failure:
+      unauthenticated: "Tu dois être connecté(e) pour continuer."
