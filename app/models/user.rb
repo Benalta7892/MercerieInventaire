@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :categories, dependent: :destroy
   has_many :fournitures, dependent: :destroy
   has_one :liste_achat, dependent: :destroy
+  has_one_attached :avatar
 
   validate :admin_must_be_owner_email
   validates :name, presence: true
