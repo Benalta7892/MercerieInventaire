@@ -1,2 +1,31 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0">Users</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Admin</th>
+        <th>Bloqué</th>
+        <th>Créé</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= link_to u.email, admin_user_path(u), class: "text-decoration-none fw-semibold" %></td>
+          <td class="text-muted"><%= u.admin? ? "Oui" : "Non" %></td>
+          <td class="text-muted"><%= u.blocked? ? "Oui" : "Non" %></td>
+          <td class="text-muted"><%= l(u.created_at.to_date) %></td>
+          <td class="text-end">
+            <%= link_to "Voir", admin_user_path(u), class: "btn btn-sm btn-outline-secondary" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
