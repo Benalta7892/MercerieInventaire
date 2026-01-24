@@ -1,2 +1,131 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%# HOME VISITEUR %>
+
+<section class="text-white"
+  style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('<%= asset_path("banner.avif") %>');
+         background-size: cover;
+         background-position: center;">
+  <div class="container py-5">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-8">
+        <h1 class="fw-bold display-6 mb-2">
+          Tes fournitures couture,<br>
+          au même endroit.
+        </h1>
+        <p class="opacity-75 mb-4">
+          Centralise et organise ton stock couture.
+          Ajoute tes fournitures, précise les détails importants,
+          et accède à ton inventaire quand tu veux.
+        </p>
+
+        <div class="d-flex justify-content-center gap-2">
+          <%= link_to "Connexion", new_user_session_path, class: "btn btn-light btn-sm" %>
+          <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Organise ton stock de fournitures facilement, avec un suivi clair.</h2>
+    </div>
+
+    <%# --- Bloc 1 (image gauche / texte droite) --- %>
+    <div class="row align-items-center g-4 mb-5">
+      <div class="col-lg-6 d-flex justify-content-center">
+        <img class="img-fluid rounded-4 shadow-sm w-50 w-100"
+            style="height: 320px; object-fit: cover;"
+             src="<%= asset_path("category.avif") %>"
+             alt="Rangement couture">
+      </div>
+      <div class="col-lg-6">
+        <h3 class="fw-bold">Catégories</h3>
+        <p class="text-muted">
+          Ajoute une catégorie à chaque fourniture pour garder un inventaire propre et lisible.
+        </p>
+
+        <ul class="list-unstyled small mb-3">
+          <li class="mb-2">✅ Vue claire par type de fourniture</li>
+          <li class="mb-2">✅ Tri rapide et rangement logique</li>
+          <li class="mb-2">✅ Meilleure organisation dès le départ</li>
+        </ul>
+
+        <%= link_to "Créer un compte →", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+      </div>
+    </div>
+
+    <%# --- Bloc 2 (texte gauche / image droite) --- %>
+    <div class="row align-items-center g-4 mb-5">
+      <div class="col-lg-6 order-lg-2  d-flex justify-content-center">
+        <img class="img-fluid rounded-4 shadow-sm w-50 w-100"
+            style="height: 320px; object-fit: cover;"
+             src="<%= asset_path("bobines.avif") %>"
+             alt="Bobines">
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <h3 class="fw-bold">Recherche</h3>
+        <p class="text-muted">
+          Retrouve instantanément une fourniture grâce à une recherche simple.
+        </p>
+
+        <ul class="list-unstyled small mb-3">
+          <li class="mb-2">✅ Gain de temps au quotidien</li>
+          <li class="mb-2">✅ Moins d’oubli et moins de doublons</li>
+          <li class="mb-2">✅ Accès direct à la bonne fiche</li>
+        </ul>
+
+        <%= link_to "Créer un compte →", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+      </div>
+    </div>
+
+    <%# --- Bloc 3 (image gauche / texte droite) --- %>
+    <div class="row align-items-center g-4 mb-5">
+      <div class="col-lg-6 d-flex justify-content-center">
+        <img class="img-fluid rounded-4 shadow-sm w-50 w-100"
+            style="height: 320px; object-fit: cover;"
+             src="<%= asset_path("MAJstock.avif") %>"
+             alt="Atelier">
+      </div>
+      <div class="col-lg-6">
+        <h3 class="fw-bold">Mise à jour du stock</h3>
+        <p class="text-muted">
+          Ajuste le stock dès que tu utilises ou achètes une fourniture.
+        </p>
+
+        <ul class="list-unstyled small mb-3">
+          <li class="mb-2">✅ Stock toujours à jour</li>
+          <li class="mb-2">✅ Suivi fiable des quantités</li>
+          <li class="mb-2">✅ Meilleure préparation de projets</li>
+        </ul>
+
+        <%= link_to "Créer un compte →", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+      </div>
+    </div>
+
+    <%# --- Bloc 4 (texte gauche / image droite) --- %>
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6 order-lg-2 d-flex justify-content-center">
+        <img class="img-fluid rounded-4 shadow-sm w-50 w-100"
+            style="height: 320px; object-fit: cover;"
+             src="<%= asset_path("achats.avif") %>"
+             alt="Rangements">
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <h3 class="fw-bold">Liste d’achats</h3>
+        <p class="text-muted">
+          Repère les stocks bas et ajoute tes besoins dans une liste d’achats.
+        </p>
+
+        <ul class="list-unstyled small mb-3">
+          <li class="mb-2">✅ Anticipe les manques</li>
+          <li class="mb-2">✅ Évite les ruptures pendant un projet</li>
+          <li class="mb-2">✅ Achats plus rapides et sans oubli</li>
+        </ul>
+
+        <%= link_to "Créer un compte →", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+      </div>
+    </div>
+  </div>
+</section>
