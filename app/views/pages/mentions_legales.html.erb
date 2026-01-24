@@ -1,11 +1,71 @@
 <div class="container py-4">
-  <h1 class="h3 fw-bold mb-3">Mentions légales</h1>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 fw-bold mb-0">Mentions légales</h1>
+  </div>
 
   <div class="card shadow-sm">
-    <div class="card-body">
-      <p class="text-muted mb-0">
-        À compléter : éditeur du site, hébergeur, responsable de publication, etc.
+    <div class="card-body p-4">
+
+      <p class="text-muted mb-4">
+        Conformément à la législation en vigueur, vous trouverez ci-dessous les informations légales relatives au site
+        <strong>Mercerie Inventaire</strong>.
       </p>
+
+      <hr class="my-4">
+
+      <h2 class="h6 fw-bold mb-2">Éditeur du site</h2>
+      <ul class="list-unstyled text-muted mb-4">
+        <li><strong>Nom :</strong> Benoît Alexandre</li>
+        <li><strong>Statut :</strong> Projet personnel non commercial</li>
+        <li><strong>Localisation :</strong> France</li>
+        <li><strong>Contact :</strong> via le formulaire <%= link_to "Contact", contact_path, class: "text-decoration-none" %></li>
+        <li><strong>Directeur de publication :</strong> Benoît Alexandre</li>
+      </ul>
+
+      <h2 class="h6 fw-bold mb-2">Objet du site</h2>
+      <p class="text-muted mb-4">
+        Mercerie Inventaire est une application permettant aux utilisateurs de gérer et organiser
+        leur stock de fournitures de couture (catégories, quantités, inventaire, liste d’achats).
+        Ce site n’a aucun objectif commercial et ne génère aucun revenu.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Hébergement</h2>
+      <ul class="list-unstyled text-muted mb-4">
+        <li><strong>Hébergeur :</strong> Heroku (Salesforce Inc.)</li>
+        <li><strong>Adresse :</strong> 415 Mission Street, 3rd Floor, San Francisco, CA 94105, USA</li>
+        <li><strong>Site web :</strong> <%= link_to "https://www.heroku.com/", "https://www.heroku.com/", class: "text-decoration-none", target: "_blank", rel: "noopener" %></li>
+      </ul>
+
+      <h2 class="h6 fw-bold mb-2">Propriété intellectuelle</h2>
+      <p class="text-muted mb-4">
+        Sauf mention contraire, les contenus présents sur le site (textes, éléments graphiques, logo, etc.)
+        sont la propriété de l’éditeur.
+        Toute reproduction, représentation ou utilisation, totale ou partielle, sans autorisation préalable,
+        est interdite.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Cookies</h2>
+      <p class="text-muted mb-4">
+        Le site utilise uniquement des cookies techniques nécessaires au fonctionnement
+        (ex : session utilisateur, authentification). Aucun cookie publicitaire n’est utilisé.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Responsabilité</h2>
+      <p class="text-muted mb-4">
+        L’éditeur ne saurait être tenu responsable d’éventuelles interruptions du service,
+        pertes de données ou dysfonctionnements liés à l’utilisation de l’application.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Données personnelles</h2>
+      <p class="text-muted mb-0">
+        Pour connaître les données collectées et vos droits, consultez la page
+        <%= link_to "Confidentialité", confidentialite_path, class: "text-decoration-none" %>.
+      </p>
+
     </div>
   </div>
+
+  <p class="small text-muted mt-3 mb-0">
+    Dernière mise à jour : <%= Date.current.strftime("%d/%m/%Y") %>
+  </p>
 </div>
