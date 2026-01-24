@@ -1,0 +1,6 @@
+fr:
+  devise:
+    sessions:
+      signed_in: "Connecté avec succès."
+      signed_out: "Déconnecté avec succès."
+      already_signed_out: "Déconnecté avec succès."
