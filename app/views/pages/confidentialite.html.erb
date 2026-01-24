@@ -1,11 +1,102 @@
 <div class="container py-4">
-  <h1 class="h3 fw-bold mb-3">Confidentialité</h1>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 fw-bold mb-0">Politique de confidentialité</h1>
+  </div>
 
   <div class="card shadow-sm">
-    <div class="card-body">
-      <p class="text-muted mb-0">
-        À compléter : données collectées, durée, droits, contact RGPD, etc.
+    <div class="card-body p-4">
+
+      <p class="text-muted mb-4">
+        Cette page explique quelles données personnelles sont collectées dans l’application
+        <strong>Mercerie Inventaire</strong>, pourquoi, et quels sont vos droits.
       </p>
+
+      <hr class="my-4">
+
+      <h2 class="h6 fw-bold mb-2">Responsable du traitement</h2>
+      <p class="text-muted mb-4">
+        <strong>Benoît Alexandre</strong> (projet personnel non commercial).<br>
+        Contact : via le formulaire <%= link_to "Contact", contact_path, class: "text-decoration-none" %>.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Données collectées</h2>
+      <ul class="text-muted mb-4">
+        <li><strong>Compte :</strong> nom, adresse email</li>
+        <li><strong>Inventaire :</strong> catégories, fournitures, quantités, descriptions (données saisies par l’utilisateur)</li>
+        <li><strong>Contact :</strong> nom, email, message envoyés via le formulaire</li>
+        <li><strong>Technique :</strong> cookies de session nécessaires à la connexion</li>
+      </ul>
+
+      <h2 class="h6 fw-bold mb-2">Pourquoi ces données</h2>
+      <ul class="text-muted mb-4">
+        <li>Créer et gérer votre compte</li>
+        <li>Permettre l’utilisation des fonctionnalités (inventaire, liste d’achats, etc.)</li>
+        <li>Répondre aux messages envoyés via le formulaire de contact</li>
+        <li>Assurer le bon fonctionnement et la sécurité de base du service</li>
+      </ul>
+
+      <h2 class="h6 fw-bold mb-2">Base légale</h2>
+      <ul class="text-muted mb-4">
+        <li><strong>Exécution du service</strong> : fournir l’application et ses fonctionnalités</li>
+        <li><strong>Consentement</strong> : envoi d’un message via le formulaire de contact</li>
+      </ul>
+
+      <h2 class="h6 fw-bold mb-2">Durée de conservation</h2>
+      <p class="text-muted mb-4">
+        Les données sont conservées tant que le compte est actif.
+        Elles sont supprimées lors de la suppression du compte (ou sur demande via le contact).
+        Les messages de contact peuvent être conservés le temps nécessaire au traitement de la demande.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Partage / destinataires</h2>
+      <p class="text-muted mb-4">
+        Les données ne sont ni vendues ni louées.
+        Elles sont accessibles uniquement par l’éditeur et par l’hébergeur pour des raisons techniques.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Hébergement</h2>
+      <p class="text-muted mb-4">
+        Les données sont hébergées par <strong>Heroku (Salesforce Inc.)</strong>.
+        Les serveurs peuvent être situés hors de l’Union européenne.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Cookies</h2>
+      <p class="text-muted mb-4">
+        Le site utilise uniquement des cookies techniques nécessaires au fonctionnement
+        (authentification, session). Aucun cookie publicitaire ou de suivi marketing n’est utilisé.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Sécurité</h2>
+      <p class="text-muted mb-4">
+        Des mesures raisonnables sont mises en œuvre (authentification, contrôle d’accès, etc.).
+        Cependant, aucun système n’est infaillible et une sécurité absolue ne peut être garantie.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Vos droits</h2>
+      <p class="text-muted mb-2">
+        Conformément au RGPD, vous disposez notamment des droits suivants :
+      </p>
+      <ul class="text-muted mb-4">
+        <li>Accès</li>
+        <li>Rectification</li>
+        <li>Suppression</li>
+        <li>Limitation</li>
+      </ul>
+
+      <p class="text-muted mb-4">
+        Vous pouvez exercer ces droits en supprimant votre compte ou en nous contactant via
+        <%= link_to "la page Contact", contact_path, class: "text-decoration-none" %>.
+      </p>
+
+      <h2 class="h6 fw-bold mb-2">Contact</h2>
+      <p class="text-muted mb-0">
+        Pour toute question sur vos données : <%= link_to "Contact", contact_path, class: "text-decoration-none" %>.
+      </p>
+
     </div>
   </div>
+
+  <p class="small text-muted mt-3 mb-0">
+    Dernière mise à jour : <%= Date.current.strftime("%d/%m/%Y") %>
+  </p>
 </div>
