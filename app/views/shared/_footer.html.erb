@@ -1,0 +1,19 @@
+<footer class="border-top mt-5 py-4">
+  <div class="container text-center gap-3 d-flex flex-column align-items-center">
+    <%= link_to root_path, class: "navbar-brand fw-semibold" do %>
+      <span class="text-primary fw-bold">M</span>ercerie
+      <span class="text-primary fw-bold">I</span>nventaire
+    <% end %>
+
+
+    <div class="d-flex justify-content-center gap-3 small">
+      <%= link_to "Contact", "#", class: "text-decoration-none text-muted" %>
+      <%= link_to "Mentions légales", "#", class: "text-decoration-none text-muted" %>
+      <%= link_to "Confidentialité", "#", class: "text-decoration-none text-muted" %>
+    </div>
+
+    <div class="small text-muted">
+      © <%= Time.current.year %> Mercerie Inventaire
+    </div>
+  </div>
+</footer>
