@@ -1,21 +1,75 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="mb-0">Ma liste d’achats</h1>
+<div class="row g-2 align-items-center mb-3">
+  <div class="col-12 col-sm">
+    <h1 class="mb-0">Ma liste d’achats</h1>
+  </div>
 
-  <div class="d-flex gap-2">
-    <%= link_to "Fournitures",
-          fournitures_path,
-          class: "btn btn-sm btn-outline-primary" %>
+  <div class="col-12 col-sm-auto">
+    <div class="d-grid gap-2 d-sm-flex">
+      <%= link_to "Fournitures",
+            fournitures_path,
+            class: "btn btn-sm btn-outline-primary" %>
 
-    <%= link_to "Voir tous les stocks bas",
-          stock_bas_fournitures_path,
-          class: "btn btn-sm btn-outline-warning" %>
+      <%= link_to "Voir tous les stocks bas",
+            stock_bas_fournitures_path,
+            class: "btn btn-sm btn-outline-warning" %>
+    </div>
   </div>
 </div>
 
+
 <% if @items.empty? %>
   <p class="text-muted">Aucune fourniture dans la liste pour le moment.</p>
+
 <% else %>
-  <div class="table-responsive">
+
+  <!-- ===== MOBILE < 576px : CARTES ===== -->
+  <div class="d-block d-sm-none">
+    <% @items.each do |item| %>
+      <% f = item.fourniture %>
+
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+
+          <div class="mb-2">
+            <%= link_to f.name,
+                  fourniture_path(f, return_to: request.fullpath),
+                  class: "fw-semibold text-decoration-none d-block" %>
+
+            <% if f.description.present? %>
+              <div class="text-muted small">
+                <%= truncate(f.description, length: 80) %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="mb-2 text-muted">
+            <strong>Catégorie :</strong>
+            <%= f.category&.name || "—" %>
+          </div>
+
+          <div class="mb-3 text-muted">
+            <strong>Quantité :</strong>
+            <%= item.quantity.presence || "—" %> <%= f.unit %>
+          </div>
+
+          <div class="d-grid gap-2">
+            <%= link_to "Mettre à jour",
+                  edit_fourniture_path(f, return_to: request.fullpath, cancel_to: "return_to"),
+                  class: "btn btn-sm btn-outline-secondary w-100" %>
+
+            <%= link_to "Retirer",
+                  liste_achat_item_path(item),
+                  class: "btn btn-sm btn-outline-danger w-100",
+                  data: { turbo_method: :delete, turbo_confirm: "Retirer cette fourniture de la liste ?" } %>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- ===== DESKTOP ≥ 576px : TABLE ===== -->
+  <div class="table-responsive d-none d-sm-block">
     <table class="table align-middle">
       <thead>
         <tr>
@@ -50,7 +104,10 @@
             </td>
 
             <td class="text-end text-nowrap">
-              <%= link_to "Mettre à jour", edit_fourniture_path(item.fourniture, return_to: request.fullpath, cancel_to: "return_to"), class: "btn btn-sm btn-outline-secondary" %>
+              <%= link_to "Mettre à jour",
+                    edit_fourniture_path(item.fourniture, return_to: request.fullpath, cancel_to: "return_to"),
+                    class: "btn btn-sm btn-outline-secondary" %>
+
               <%= link_to "Retirer",
                     liste_achat_item_path(item),
                     class: "btn btn-sm btn-outline-danger",
@@ -61,4 +118,5 @@
       </tbody>
     </table>
   </div>
+
 <% end %>

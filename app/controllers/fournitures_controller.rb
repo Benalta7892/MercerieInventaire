@@ -17,12 +17,13 @@ class FournituresController < ApplicationController
 
   def new
     @fourniture = current_user.fournitures.new
+    @return_to = params[:return_to].presence || request.referer
   end
 
   def create
     @fourniture = current_user.fournitures.new(fourniture_params)
     if @fourniture.save
-      redirect_to fournitures_path(@fourniture, return_to: params[:return_to], cancel_to: params[:cancel_to]),
+      redirect_to fourniture_path(@fourniture, return_to: params[:return_to]),
                   notice: "Fourniture créée avec succès."
     else
       render :new, alert: "Erreur lors de la création de la fourniture."

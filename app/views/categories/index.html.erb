@@ -1,13 +1,57 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="mb-0">Catégories</h1>
-  <%= link_to "Nouvelle catégorie", new_category_path, class: "btn btn-outline-primary btn-sm" %>
+<div class="row g-2 align-items-center mb-3">
+  <div class="col-12 col-sm">
+    <h1 class="mb-0">Catégories</h1>
+  </div>
+
+  <div class="col-12 col-sm-auto">
+    <div class="d-grid d-sm-block">
+      <%= link_to "Nouvelle catégorie",
+            new_category_path,
+            class: "btn btn-outline-primary btn-sm w-100" %>
+    </div>
+  </div>
 </div>
 
 <% if @categories.empty? %>
   <p class="text-muted">Aucune catégorie pour le moment.</p>
   <%= link_to "Créer ma première catégorie", new_category_path, class: "btn btn-primary btn-sm" %>
+
 <% else %>
-  <div class="table-responsive">
+
+  <!-- ===== MOBILE (< sm) : CARTES ===== -->
+  <div class="d-block d-sm-none">
+    <% @categories.each do |category| %>
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+
+          <div class="mb-2">
+            <%= link_to category.name,
+                  category_path(category, return_to: request.fullpath),
+                  class: "fw-semibold text-decoration-none d-block" %>
+          </div>
+
+          <div class="text-muted mb-3">
+            <strong>Nb fournitures :</strong> <%= category.fournitures.count %>
+          </div>
+
+          <div class="d-grid gap-2">
+            <%= link_to "Modifier",
+                  edit_category_path(category, return_to: request.fullpath),
+                  class: "btn btn-outline-secondary btn-sm" %>
+
+            <%= link_to "Supprimer",
+                  category_path(category),
+                  class: "btn btn-outline-danger btn-sm",
+                  data: { turbo_method: :delete, turbo_confirm: "Supprimer cette catégorie ?" } %>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- ===== DESKTOP (>= sm) : TABLE ===== -->
+  <div class="table-responsive d-none d-sm-block">
     <table class="table align-middle">
       <thead>
         <tr>
@@ -21,7 +65,9 @@
         <% @categories.each do |category| %>
           <tr>
             <td>
-              <%= link_to category.name, category_path(category, return_to: request.fullpath), class: "text-decoration-none fw-semibold" %>
+              <%= link_to category.name,
+                    category_path(category, return_to: request.fullpath),
+                    class: "text-decoration-none fw-semibold" %>
             </td>
 
             <td class="text-muted text-nowrap">
@@ -29,7 +75,10 @@
             </td>
 
             <td class="text-end text-nowrap">
-              <%= link_to "Modifier", edit_category_path(category, return_to: request.fullpath), class: "btn btn-sm btn-outline-secondary" %>
+              <%= link_to "Modifier",
+                    edit_category_path(category, return_to: request.fullpath),
+                    class: "btn btn-sm btn-outline-secondary" %>
+
               <%= link_to "Supprimer",
                     category_path(category),
                     class: "btn btn-sm btn-outline-danger",
@@ -40,4 +89,5 @@
       </tbody>
     </table>
   </div>
+
 <% end %>

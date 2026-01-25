@@ -1,21 +1,62 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="mb-0">Fournitures en stock bas</h1>
+<div class="row g-2 align-items-center mb-3">
+  <div class="col-12 col-sm">
+    <h1 class="mb-0">Fournitures en stock bas</h1>
+  </div>
 
-  <div class="d-flex gap-2">
-    <%= link_to "Fournitures",
-          fournitures_path,
-          class: "btn btn-outline-primary btn-sm" %>
-
-    <%= link_to "Liste d'achats",
-          liste_achat_path,
-          class: "btn btn-sm btn-outline-success" %>
+  <div class="col-12 col-sm-auto">
+    <div class="d-grid gap-2 d-sm-flex">
+      <%= link_to "Fournitures", fournitures_path, class: "btn btn-outline-primary btn-sm" %>
+      <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-outline-success btn-sm" %>
+    </div>
   </div>
 </div>
 
+
 <% if @fournitures.empty? %>
   <p class="text-muted">Aucune fourniture en stock bas 🎉</p>
+
 <% else %>
-  <div class="table-responsive">
+
+  <!-- ===== MOBILE < 500px : CARTES ===== -->
+  <div class="d-block d-sm-none">
+    <% @fournitures.each do |f| %>
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+
+          <div class="mb-2">
+            <%= link_to f.name,
+                  fourniture_path(f, return_to: request.fullpath),
+                  class: "fw-semibold text-decoration-none d-block" %>
+
+            <% if f.description.present? %>
+              <div class="text-muted small">
+                <%= truncate(f.description, length: 80) %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="mb-2 text-muted">
+            <strong>Catégorie :</strong>
+            <%= f.category&.name || "—" %>
+          </div>
+
+          <div class="mb-3 text-muted">
+            <strong>Quantité :</strong>
+            <%= f.quantity %> <%= f.unit %>
+          </div>
+
+          <%= button_to "Ajouter à la liste d'achat",
+                liste_achat_items_path(fourniture_id: f.id),
+                method: :post,
+                class: "btn btn-sm btn-outline-success w-100" %>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- ===== DESKTOP ≥ 500px : TABLE ===== -->
+  <div class="table-responsive d-none d-sm-block">
     <table class="table align-middle">
       <thead>
         <tr>
@@ -50,7 +91,7 @@
             </td>
 
             <td class="text-end text-nowrap">
-              <%= button_to "Ajouter à la liste",
+              <%= button_to "Ajouter à la liste d'achat",
                     liste_achat_items_path(fourniture_id: f.id),
                     method: :post,
                     class: "btn btn-sm btn-outline-success" %>
@@ -60,4 +101,5 @@
       </tbody>
     </table>
   </div>
+
 <% end %>
