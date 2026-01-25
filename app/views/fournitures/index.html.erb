@@ -35,7 +35,7 @@
 
 <% if @fournitures.empty? %>
   <p class="text-muted">Aucune fourniture pour le moment.</p>
-  <%= link_to "Ajouter une fourniture", new_fourniture_path, class: "btn btn-primary btn-sm" %>
+  <%= link_to "Ajouter une fourniture", new_fourniture_path(return_to: request.fullpath, origin: params[:origin]), class: "btn btn-primary btn-sm" %>
 <% else %>
   <div class="table-responsive">
     <table class="table align-middle">
@@ -50,9 +50,11 @@
 
       <tbody>
         <% @fournitures.each do |f| %>
+          <%# origin = params[:origin] %>
+
           <tr>
             <td>
-              <%= link_to f.name, fourniture_path(f), class: "text-decoration-none fw-semibold" %>
+              <%= link_to f.name, fourniture_path(f, return_to: request.fullpath, origin: params[:return_to]), class: "text-decoration-none fw-semibold" %>
               <% if f.description.present? %>
                 <div class="text-muted small"><%= truncate(f.description, length: 60) %></div>
               <% end %>

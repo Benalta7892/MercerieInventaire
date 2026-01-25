@@ -22,7 +22,8 @@ class FournituresController < ApplicationController
   def create
     @fourniture = current_user.fournitures.new(fourniture_params)
     if @fourniture.save
-      redirect_to fournitures_path(@fourniture), notice: "Fourniture créée avec succès."
+      redirect_to fournitures_path(@fourniture, return_to: params[:return_to], cancel_to: params[:cancel_to]),
+                  notice: "Fourniture créée avec succès."
     else
       render :new, alert: "Erreur lors de la création de la fourniture."
     end
@@ -32,7 +33,8 @@ class FournituresController < ApplicationController
 
   def update
     if @fourniture.update(fourniture_params)
-      redirect_to fourniture_path(@fourniture), notice: "Fourniture mise à jour avec succès."
+      redirect_to fourniture_path(@fourniture, return_to: params[:return_to], origin: params[:origin]),
+                  notice: "Fourniture mise à jour avec succès."
     else
       render :edit, alert: "Erreur lors de la mise à jour de la fourniture."
     end

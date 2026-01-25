@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: %i[show edit update destroy]
   def index
     @categories = current_user.categories.order(:name)
   end
@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to category_path(@category), notice: "Catégorie mise à jour avec succès."
+      redirect_to (params[:return_to].presence || categories_path), notice: "Catégorie mise à jour avec succès."
     else
       render :edit, alert: "Erreur lors de la mise à jour de la catégorie."
     end

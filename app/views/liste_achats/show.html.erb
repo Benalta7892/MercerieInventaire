@@ -31,7 +31,7 @@
           <tr>
             <td>
               <%= link_to item.fourniture.name,
-                    fourniture_path(item.fourniture),
+                    fourniture_path(item.fourniture, return_to: request.fullpath),
                     class: "text-decoration-none fw-semibold" %>
 
               <% if item.fourniture.description.present? %>
@@ -50,7 +50,7 @@
             </td>
 
             <td class="text-end text-nowrap">
-              <%= link_to "Mettre à jour", edit_fourniture_path(item.fourniture), class: "btn btn-sm btn-outline-secondary" %>
+              <%= link_to "Mettre à jour", edit_fourniture_path(item.fourniture, return_to: request.fullpath, cancel_to: "return_to"), class: "btn btn-sm btn-outline-secondary" %>
               <%= link_to "Retirer",
                     liste_achat_item_path(item),
                     class: "btn btn-sm btn-outline-danger",

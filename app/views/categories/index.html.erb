@@ -21,7 +21,7 @@
         <% @categories.each do |category| %>
           <tr>
             <td>
-              <%= link_to category.name, category_path(category), class: "text-decoration-none fw-semibold" %>
+              <%= link_to category.name, category_path(category, return_to: request.fullpath), class: "text-decoration-none fw-semibold" %>
             </td>
 
             <td class="text-muted text-nowrap">
@@ -29,7 +29,7 @@
             </td>
 
             <td class="text-end text-nowrap">
-              <%= link_to "Modifier", edit_category_path(category), class: "btn btn-sm btn-outline-secondary" %>
+              <%= link_to "Modifier", edit_category_path(category, return_to: request.fullpath), class: "btn btn-sm btn-outline-secondary" %>
               <%= link_to "Supprimer",
                     category_path(category),
                     class: "btn btn-sm btn-outline-danger",

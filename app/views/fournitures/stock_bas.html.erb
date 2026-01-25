@@ -31,7 +31,7 @@
           <tr>
             <td>
               <%= link_to f.name,
-                    fourniture_path(f),
+                    fourniture_path(f, return_to: request.fullpath),
                     class: "text-decoration-none fw-semibold" %>
 
               <% if f.description.present? %>
