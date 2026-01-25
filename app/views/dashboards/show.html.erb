@@ -63,7 +63,6 @@
 
   <div class="row g-3 mb-4">
     <!-- Stock bas -->
-    <!-- Stock bas -->
     <div class="col-12 col-lg-6">
       <div class="card shadow-sm">
         <div class="card-body">
@@ -107,7 +106,7 @@
                       <strong>Quantité :</strong> <%= f.quantity %> <%= f.unit %>
                     </div>
 
-                    <%= button_to "Ajouter à la liste d'achats",
+                    <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
                       liste_achat_items_path(fourniture_id: f.id),
                       method: :post,
                       class: "btn btn-sm btn-outline-success w-100" %>
@@ -146,7 +145,7 @@
                       <td class="text-nowrap text-muted"><%= f.quantity %> <%= f.unit %></td>
 
                       <td class="text-end text-nowrap">
-                        <%= button_to "Ajouter à la liste d'achats",
+                        <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
                           liste_achat_items_path(fourniture_id: f.id),
                           method: :post,
                           class: "btn btn-sm btn-outline-success" %>
@@ -163,7 +162,6 @@
     </div>
 
 
-    <!-- Derniers ajouts -->
     <!-- Derniers ajouts -->
     <div class="col-12 col-lg-6">
       <div class="card shadow-sm">
