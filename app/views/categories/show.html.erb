@@ -1,20 +1,22 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="mb-0"><%= @category.name %></h1>
+<div class="row g-2 align-items-center mb-3">
+  <div class="col-12 col-sm">
+    <h1 class="mb-0"><%= @category.name %></h1>
+  </div>
 
   <% back = params[:return_to].presence || categories_path %>
 
-  <div class="d-flex gap-2">
-    <%= link_to "← Retour",
-          back,
-          class: "btn btn-outline-secondary btn-sm" %>
+  <div class="col-12 col-sm-auto">
+    <div class="d-grid gap-2 d-sm-flex">
+      <%= link_to "← Retour", back, class: "btn btn-outline-secondary btn-sm" %>
 
-    <%= link_to "Ajouter une fourniture",
-          new_fourniture_path(category_id: @category.id),
-          class: "btn btn-outline-primary btn-sm" %>
+      <%= link_to "Ajouter une fourniture",
+            new_fourniture_path(category_id: @category.id, return_to: request.fullpath),
+            class: "btn btn-outline-primary btn-sm" %>
 
-    <%= link_to "Liste d'achats",
-          liste_achat_path,
-          class: "btn btn-outline-success btn-sm" %>
+      <%= link_to "Liste d'achats",
+            liste_achat_path,
+            class: "btn btn-outline-success btn-sm" %>
+    </div>
   </div>
 </div>
 
@@ -24,8 +26,43 @@
   <%= link_to "Ajouter une fourniture",
         new_fourniture_path(category_id: @category.id, return_to: request.fullpath),
         class: "btn btn-primary btn-sm" %>
+
 <% else %>
-  <div class="table-responsive">
+
+  <!-- ===== MOBILE (< sm) : CARTES ===== -->
+  <div class="d-block d-sm-none">
+    <% @category.fournitures.order(:name).each do |f| %>
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+
+          <div class="mb-2">
+            <%= link_to f.name,
+                  fourniture_path(f, return_to: request.fullpath, origin: params[:origin]),
+                  class: "fw-semibold text-decoration-none d-block" %>
+
+            <% if f.description.present? %>
+              <div class="text-muted small">
+                <%= truncate(f.description, length: 80) %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="text-muted mb-3">
+            <strong>Quantité :</strong> <%= f.quantity %> <%= f.unit %>
+          </div>
+
+          <%= button_to "Ajouter à la liste",
+                liste_achat_items_path(fourniture_id: f.id),
+                method: :post,
+                class: "btn btn-outline-success btn-sm w-100" %>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- ===== DESKTOP (>= sm) : TABLE ===== -->
+  <div class="table-responsive d-none d-sm-block">
     <table class="table align-middle">
       <thead>
         <tr>
@@ -39,7 +76,10 @@
         <% @category.fournitures.order(:name).each do |f| %>
           <tr>
             <td>
-              <%= link_to f.name, fourniture_path(f, return_to: request.fullpath, origin: params[:origin]), class: "text-decoration-none fw-semibold" %>
+              <%= link_to f.name,
+                    fourniture_path(f, return_to: request.fullpath, origin: params[:origin]),
+                    class: "text-decoration-none fw-semibold" %>
+
               <% if f.description.present? %>
                 <div class="text-muted small"><%= truncate(f.description, length: 60) %></div>
               <% end %>
@@ -60,4 +100,5 @@
       </tbody>
     </table>
   </div>
+
 <% end %>
