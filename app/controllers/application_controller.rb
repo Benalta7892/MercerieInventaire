@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_blocked!
 
+  # before_action :store_return_to
+
   protected
 
   def configure_permitted_parameters
@@ -24,4 +26,18 @@ class ApplicationController < ActionController::Base
     sign_out current_user
     redirect_to new_user_session_path, alert: "Votre compte a été bloqué."
   end
+
+  private
+
+  # def store_return_to
+  #   return unless request.get?
+  #   return if request.xhr?
+  #   return if devise_controller?
+
+  #   path = request.fullpath
+  #   return if path.end_with?("/edit") || path.include?("/edit?")
+  #   return if path.end_with?("/new")  || path.include?("/new?")
+
+  #   session[:return_to] = path
+  # end
 end

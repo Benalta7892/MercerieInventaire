@@ -1,9 +1,13 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h1 class="mb-0"><%= @fourniture.name %></h1>
 
-  <%= link_to "← Retour",
-        request.referer || fournitures_path,
-        class: "btn btn-outline-secondary btn-sm" %>
+  <%# back = params[:return_to].presence || safe_back_url(fallback: fournitures_path) %>
+  <%# back = params[:return_to].presence || fournitures_path(origin: params[:origin]) %>
+  <% back = params[:return_to].presence || dashboard_path %>
+
+
+  <%= link_to "← Retour", back, class: "btn btn-outline-secondary btn-sm" %>
+
 </div>
 
 <div class="card shadow-sm">
@@ -17,7 +21,7 @@
 
 <div class="mt-3 d-flex gap-2">
   <%= link_to "Modifier",
-        edit_fourniture_path(@fourniture),
+        edit_fourniture_path(@fourniture, return_to: params[:return_to], cancel_to: "show"),
         class: "btn btn-outline-secondary btn-sm" %>
 
   <%= link_to "Supprimer",
