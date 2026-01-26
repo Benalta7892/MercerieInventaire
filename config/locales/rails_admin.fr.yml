@@ -1,0 +1,88 @@
+fr:
+  admin:
+    home:
+      name: "Accueil"
+
+    pagination:
+      previous: "&laquo; Précédent"
+      next: "Suivant &raquo;"
+      truncate: "…"
+
+    misc:
+      filter: "Filtrer"
+      refresh: "Rafraîchir"
+      search: "Rechercher"
+      reset_filters: "Réinitialiser"
+      show_all: "Tout afficher"
+      add_filter: "Ajouter un filtre"
+      bulk_menu_title: "Actions groupées"
+      export: "Exporter"
+      navigation: "Navigation"
+      log_out: "Déconnexion"
+      no_entries: "Aucun résultat"
+      go_to_app: "Retour au site"
+      model: "Modèle"
+      details: "Détails"
+      are_you_sure: "Êtes-vous sûr ?"
+
+    flash:
+      successful: "%{name} %{action} avec succès."
+      error: "Échec : %{name} %{action}."
+      noaction: "Aucune action effectuée."
+      model_not_found: "Modèle introuvable '%{model}'."
+      object_not_found: "%{model} introuvable avec l’ID '%{id}'."
+
+    table_headers:
+      model_name: "Modèle"
+      last_created: "Dernier créé"
+      records: "Enregistrements"
+      username: "Utilisateur"
+      changes: "Modifications"
+      created_at: "Créé le"
+      updated_at: "Mis à jour le"
+
+    actions:
+      dashboard:
+        title: "Tableau de bord"
+        menu: "Tableau de bord"
+        breadcrumb: "Tableau de bord"
+
+      index:
+        title: "Liste des %{model_label_plural}"
+        menu: "Liste"
+        breadcrumb: "%{model_label_plural}"
+        no_records: "Aucun enregistrement."
+
+      show:
+        title: "Détails de %{model_label}"
+        menu: "Voir"
+        breadcrumb: "%{object_label}"
+
+      new:
+        title: "Créer %{model_label}"
+        menu: "Créer"
+        breadcrumb: "Créer"
+
+      edit:
+        title: "Modifier %{model_label}"
+        menu: "Modifier"
+        breadcrumb: "Modifier"
+
+      delete:
+        title: "Supprimer %{model_label}"
+        menu: "Supprimer"
+        breadcrumb: "Supprimer"
+
+      bulk_delete:
+        title: "Supprimer %{model_label_plural}"
+        menu: "Suppression groupée"
+        breadcrumb: "Suppression groupée"
+
+      export:
+        title: "Exporter %{model_label_plural}"
+        menu: "Exporter"
+        breadcrumb: "Exporter"
+        link: "Exporter les utilisateurs trouvés"
+
+      show_in_app:
+        menu: "Voir dans l’app"
