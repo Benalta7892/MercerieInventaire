@@ -44,6 +44,6 @@ Rails.application.routes.draw do
   get "/confidentialite", to: "pages#confidentialite"
 
   authenticate :user, ->(u) { u.admin? } do
-    mount RailsAdmin::Engine => "/admin", as: "rails_admin"
+    mount RailsAdmin::Engine => "/rails_admin", as: "rails_admin"
   end
 end
