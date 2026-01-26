@@ -1,5 +1,11 @@
 fr:
   hello: "Bonjour le monde"
   date:
+    month_names: [~, janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre]
+    abbr_month_names: [~, jan., fév., mar., avr., mai, juin, juil., août, sept., oct., nov., déc.]
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+  date:
     formats:
       default: "%d/%m/%Y"
