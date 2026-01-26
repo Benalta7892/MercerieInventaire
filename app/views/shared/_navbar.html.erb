@@ -75,14 +75,25 @@
                 <%= link_to "Fournitures", fournitures_path, class: "dropdown-item" %>
                 <%= link_to "Stocks bas", stock_bas_fournitures_path, class: "dropdown-item" %>
                 <%= link_to "Liste d'achats", liste_achat_path, class: "dropdown-item" %>
-                <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+                <% if session[:demo_user_id].present? %>
+                  <%= link_to "Déconnexion",
+                    demo_logout_path,
+                    data: { turbo_method: :delete },
+                    class: "dropdown-item" %>
+                <% else %>
+                  <%= link_to "Déconnexion",
+                    destroy_user_session_path,
+                    data: { turbo_method: :delete },
+                    class: "dropdown-item" %>
+                <% end %>
+
               </div>
             </li>
           <% else %>
             <li class="nav-item">
               <div class="d-flex flex-column flex-sm-row gap-2 mt-4 mt-sm-0">
                 <%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary btn-sm" %>
-                <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+                <%= button_to "Essayer la démo →", demo_login_path, method: :post, class: "btn btn-primary btn-sm" %>
               </div>
             </li>
           <% end %>

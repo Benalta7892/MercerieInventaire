@@ -13,3 +13,6 @@ fr:
         forgot_your_password: "Mot de passe oublié ?"
     failure:
       unauthenticated: "Tu dois être connecté(e) pour continuer."
+      invalid: "Email ou mot de passe incorrect."
+      user:
+        invalid: "Email ou mot de passe incorrect."

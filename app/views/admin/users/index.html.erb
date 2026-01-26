@@ -2,6 +2,19 @@
   <div class="col-12 col-sm">
     <h1 class="mb-0">Users</h1>
   </div>
+
+  <div class="col-12 col-sm-auto text-sm-end">
+    <% if current_user.admin? %>
+      <%= link_to "Ouvrir Rails Admin",
+            rails_admin_path,
+            target: "_blank",
+            rel: "noopener",
+            data: { turbo: false },
+            class: "btn btn-sm btn-outline-primary" %>
+    <% end %>
+  </div>
+
+
 </div>
 
 <% if @users.empty? %>
