@@ -2,6 +2,7 @@ RailsAdmin.config do |config|
   # config.asset_source = :importmap
   config.asset_source = :sprockets
 
+
   ### Popular gems integration
 
   ## == Devise ==
@@ -18,6 +19,9 @@ RailsAdmin.config do |config|
     redirect_to main_app.dashboard_path, alert: "Accès refusé." unless current_user&.admin?
   end
 
+
+  config.parent_controller = "ApplicationController"
+  config.main_app_name = ["Mercerie Inventaire", "Admin"]
 
   ## == CancanCan ==
   # config.authorize_with :cancancan
