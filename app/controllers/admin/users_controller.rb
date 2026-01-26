@@ -10,7 +10,8 @@ class Admin::UsersController < ApplicationController
   def update
     return redirect_to admin_users_path, alert: "Action impossible." if @user == current_user
 
-    @user.update!(blocked: params[:blocked] == "true")
+    blocked = ActiveModel::Type::Boolean.new.cast(params[:blocked])
+    @user.update!(blocked: blocked)
     redirect_to admin_users_path(@user), notice: "Utilisateur mis à jour."
   end
 
