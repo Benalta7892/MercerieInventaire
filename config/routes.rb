@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, skip: [:registrations], controllers: { sessions: "users/sessions" }
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  post "/demo-login",  to: "demo_sessions#create",  as: :demo_login
+  delete "/demo-logout", to: "demo_sessions#destroy", as: :demo_logout
 
   # Administration des utilisateurs
   namespace :admin do
@@ -34,7 +37,7 @@ Rails.application.routes.draw do
 
   # Liste d'achat
   resource :liste_achat, only: [:show] do
-    resources :items, only: [:create, :destroy], module: :liste_achat
+    resources :items, only: [:create, :edit, :update, :destroy], module: :liste_achat
   end
 
   # Liens footer
