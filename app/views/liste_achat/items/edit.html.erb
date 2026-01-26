@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h4 fw-bold mb-0">Modifier la quantité</h1>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-8">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+
+        <%= simple_form_for @item,
+              url: liste_achat_item_path(@item, return_to: params[:return_to]),
+              method: :patch do |f| %>
+
+          <%= f.error_notification %>
+
+          <%= hidden_field_tag :return_to, params[:return_to] %>
+
+          <% cancel = params[:return_to].presence || liste_achat_path %>
+
+          <!-- Infos fourniture -->
+          <div class="mb-3">
+            <div class="fw-semibold"><%= @item.fourniture.name %></div>
+            <div class="text-muted small">
+              <%= @item.fourniture.category&.name || "—" %>
+              • <%= @item.fourniture.unit %>
+            </div>
+          </div>
+
+          <!-- Quantité -->
+          <div class="mb-3">
+            <%= f.input :quantity,
+                        label: "Quantité à mettre à jour",
+                        input_html: { class: "form-control" },
+                        label_html: { class: "form-label" } %>
+          </div>
+
+          <div class="d-flex gap-2 mt-2">
+            <%= f.button :submit, "Mettre à jour", class: "btn btn-primary" %>
+            <%= link_to "Annuler", cancel, class: "btn btn-outline-secondary" %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
