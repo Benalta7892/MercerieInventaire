@@ -63,18 +63,4 @@ Ce projet m’a permis de travailler sur :
 
 ---
 
-## 🚀 Installation en local
-
-git clone https://github.com/Benalta7892/MercerieInventaire.git
-cd MercerieInventaire
-bundle install
-rails db:create db:migrate db:seed
-rails server
-http://localhost:3000
-
-## 🌐 Lien de l’application  
-
-👉 www.mercerie-inventaire.com  
-
-
 Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
