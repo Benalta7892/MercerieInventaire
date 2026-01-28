@@ -20,6 +20,17 @@
   </div>
 </div>
 
+<div class="d-flex justify-content-end mb-2">
+  <span class="text-muted small">
+    Valeur totale :
+    <strong>
+      <%= number_to_currency(@category_total_value_cents.to_f / 100.0,
+            unit: "€", format: "%n %u", separator: ",", delimiter: " ") %>
+    </strong>
+  </span>
+</div>
+
+
 <% if @category.fournitures.empty? %>
   <p class="text-muted">Aucune fourniture dans cette catégorie.</p>
 
@@ -68,6 +79,8 @@
         <tr>
           <th>Nom</th>
           <th class="text-nowrap">Quantité</th>
+          <th class="text-end text-nowrap">Prix</th>
+          <th class="text-end text-nowrap">Valeur</th>
           <th></th>
         </tr>
       </thead>
@@ -87,6 +100,23 @@
 
             <td class="text-nowrap text-muted">
               <%= f.quantity %> <%= f.unit %>
+            </td>
+
+            <td class="text-end text-nowrap text-muted">
+              <% if f.price_cents.present? %>
+                <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u", separator: ",", delimiter: " ") %>
+              <% else %>
+                —
+              <% end %>
+            </td>
+
+            <td class="text-end text-nowrap text-muted">
+              <% if f.price_cents.present? %>
+                <%= number_to_currency((f.price_cents.to_i * f.quantity.to_f) / 100.0,
+          unit: "€", format: "%n %u", separator: ",", delimiter: " ") %>
+              <% else %>
+                —
+              <% end %>
             </td>
 
             <td class="text-end text-nowrap">

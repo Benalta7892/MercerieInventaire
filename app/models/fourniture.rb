@@ -10,7 +10,7 @@ class Fourniture < ApplicationRecord
   def stock_value_cents
     return 0 if price_cents.blank? || quantity.blank?
 
-    (price_cents * quantity.to_i)
+    (price_cents * quantity).round
   end
 
   def stock_value_euros

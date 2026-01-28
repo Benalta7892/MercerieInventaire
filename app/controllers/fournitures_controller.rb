@@ -11,6 +11,8 @@ class FournituresController < ApplicationController
     end
 
     @fournitures = @fournitures.where(category_id: params[:category_id]) if params[:category_id].present?
+
+    @total_value_cents = @fournitures.where.not(price_cents: nil).sum("price_cents * quantity")
   end
 
   def show; end
@@ -48,6 +50,7 @@ class FournituresController < ApplicationController
 
   def stock_bas
     @fournitures = current_user.fournitures.includes(:category).where("quantity <= 1").order(:name)
+    @total_value_cents = @fournitures.where.not(price_cents: nil).sum("price_cents * quantity")
   end
 
   private
