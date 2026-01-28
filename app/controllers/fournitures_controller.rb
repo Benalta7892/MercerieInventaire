@@ -57,6 +57,6 @@ class FournituresController < ApplicationController
   end
 
   def fourniture_params
-    params.require(:fourniture).permit(:name, :quantity, :unit, :color, :description, :category_id)
+    params.require(:fourniture).permit(:name, :quantity, :unit, :color, :price_euros, :description, :category_id)
   end
 end
