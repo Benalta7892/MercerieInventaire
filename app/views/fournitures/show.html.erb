@@ -1,6 +1,11 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h1 class="mb-0"><%= @fourniture.name %></h1>
 
+  <p class="text-muted">
+    debug: user=<%= current_user.id %> fourniture=<%= @fourniture.id %> price_cents=<%= @fourniture.price_cents.inspect %>
+  </p>
+
+
   <%# back = params[:return_to].presence || safe_back_url(fallback: fournitures_path) %>
   <%# back = params[:return_to].presence || fournitures_path(origin: params[:origin]) %>
   <% back = params[:return_to].presence || dashboard_path %>
