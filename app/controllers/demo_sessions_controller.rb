@@ -47,6 +47,7 @@ class DemoSessionsController < ApplicationController
         quantity: f.quantity,
         unit: f.unit,
         color: f.color,
+        price_cents: f.price_cents,
         description: f.description
       )
       fourn_map[f.id] = new_f
