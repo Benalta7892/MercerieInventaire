@@ -15,6 +15,13 @@
     <p><strong>Catégorie :</strong> <%= @fourniture.category&.name || "—" %></p>
     <p><strong>Stock :</strong> <%= @fourniture.quantity %> <%= @fourniture.unit %></p>
     <p><strong>Couleur :</strong> <%= @fourniture.color.presence || "—" %></p>
+    <p><strong>Prix unitaire :</strong>
+      <% if @fourniture.price_cents.present? %>
+        <%= number_to_currency(@fourniture.price_cents.to_f / 100, unit: "€") %>
+      <% else %>
+        —
+      <% end %>
+    </p>
     <p><strong>Description :</strong> <%= @fourniture.description.presence || "—" %></p>
   </div>
 </div>
