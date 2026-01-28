@@ -4,5 +4,6 @@ class Fourniture < ApplicationRecord
   has_many :liste_achat_items, dependent: :destroy
 
   validates :name, presence: true
-  validates :quantity, numericality: { greater_than_or_equal_to: 0  }
+  validates :quantity, numericality: { greater_than_or_equal_to: 0 }
+  validates :price_cents, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 end
