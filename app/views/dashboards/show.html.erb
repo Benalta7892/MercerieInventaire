@@ -17,8 +17,14 @@
     <div class="card shadow-sm h-100">
       <%= link_to fournitures_path, class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
-          <div class="text-muted">Stock total</div>
-          <div class="fs-3 fw-bold text-primary"><%= @fournitures_count %></div>
+          <h5>Stock total</h5>
+          <div class="d-flex justify-content-between align-items-baseline">
+            <div class="fs-3 fw-bold text-primary"><%= @fournitures_count %></div>
+            <div class="text-muted">
+              Valeur totale :
+              <strong><%= number_to_currency(@stock_total_value_cents / 100.0, unit: "€") %></strong>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>
@@ -29,8 +35,14 @@
       <%= link_to stock_bas_fournitures_path,
           class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
-          <div class="text-muted">Stocks bas</div>
-          <div class="fs-3 fw-bold text-warning"><%= @stock_bas_count %></div>
+          <h5>Stocks bas</h5>
+          <div class="d-flex justify-content-between align-items-baseline">
+            <div class="fs-3 fw-bold text-warning"><%= @stock_bas_count %></div>
+            <div class="text-muted">
+              Valeur totale :
+              <strong><%= number_to_currency(@stock_bas_value_cents / 100.0, unit: "€") %></strong>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>
@@ -41,8 +53,14 @@
       <%= link_to liste_achat_path,
           class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
-          <div class="text-muted">À acheter</div>
-          <div class="fs-3 fw-bold text-success"><%= @a_acheter_count %></div>
+          <h5>À acheter</h5>
+          <div class="d-flex justify-content-between align-items-baseline">
+            <div class="fs-3 fw-bold text-success"><%= @a_acheter_count %></div>
+            <div class="text-muted">
+              Valeur totale :
+              <strong><%= number_to_currency(@a_acheter_value_cents / 100.0, unit: "€") %></strong>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>
@@ -53,8 +71,10 @@
       <%= link_to categories_path,
           class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
-          <div class="text-muted">Catégories</div>
-          <div class="fs-3 fw-bold"><%= @categories_count %></div>
+          <h5>Catégories</h5>
+          <div class="d-flex justify-content-between align-items-baseline">
+            <div class="fs-3 fw-bold"><%= @categories_count %></div>
+          </div>
         </div>
       <% end %>
     </div>
@@ -106,6 +126,16 @@
                       <strong>Quantité :</strong> <%= f.quantity %> <%= f.unit %>
                     </div>
 
+                    <div class="text-muted small mb-3">
+                      <strong>Prix :</strong>
+                      <% if f.price_cents.present? %>
+                        <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
+                      <% else %>
+                        —
+                      <% end %>
+                    </div>
+
+
                     <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
                       liste_achat_items_path(fourniture_id: f.id),
                       method: :post,
@@ -123,6 +153,7 @@
                     <th>Nom</th>
                     <th>Catégorie</th>
                     <th class="text-nowrap">Quantité</th>
+                    <th class="text-nowrap text-end">Prix</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -143,6 +174,15 @@
                       <td class="text-muted"><%= f.category&.name || "—" %></td>
 
                       <td class="text-nowrap text-muted"><%= f.quantity %> <%= f.unit %></td>
+
+                      <td class="text-end text-nowrap text-muted">
+                        <% if f.price_cents.present? %>
+                          <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
+                        <% else %>
+                          —
+                        <% end %>
+                      </td>
+
 
                       <td class="text-end text-nowrap">
                         <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
@@ -202,9 +242,19 @@
                       <strong>Catégorie :</strong> <%= f.category&.name || "—" %>
                     </div>
 
-                    <div class="text-muted small">
+                    <div class="text-muted small mb-3">
                       <strong>Quantité :</strong> <%= f.quantity %> <%= f.unit %>
                     </div>
+
+                    <div class="text-muted small mb-3">
+                      <strong>Prix :</strong>
+                      <% if f.price_cents.present? %>
+                        <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
+                      <% else %>
+                        —
+                      <% end %>
+                    </div>
+
 
                   </div>
                 </div>
@@ -219,6 +269,7 @@
                     <th>Nom</th>
                     <th>Catégorie</th>
                     <th class="text-nowrap">Quantité</th>
+                    <th class="text-nowrap text-end">Prix</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -240,9 +291,22 @@
 
                       <td class="text-nowrap text-muted"><%= f.quantity %> <%= f.unit %></td>
 
-                      <td class="text-end text-nowrap">
-                        <span class="invisible btn btn-sm btn-outline-success">.</span>
+                      <td class="text-end text-nowrap text-muted">
+                        <% if f.price_cents.present? %>
+                          <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
+                        <% else %>
+                          —
+                        <% end %>
                       </td>
+
+
+                      <td class="text-end text-nowrap invisible">
+                        <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
+                          liste_achat_items_path(fourniture_id: f.id),
+                          method: :post,
+                          class: "btn btn-sm btn-outline-success" %>
+                      </td>
+
                     </tr>
                   <% end %>
                 </tbody>

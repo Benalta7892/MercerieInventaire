@@ -13,6 +13,10 @@ class Fourniture < ApplicationRecord
     (price_cents * quantity.to_i)
   end
 
+  def stock_value_euros
+    stock_value_cents / 100.0
+  end
+
   def price_euros
     price_cents.present? ? price_cents / 100.0 : nil
   end

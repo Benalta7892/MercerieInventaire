@@ -16,6 +16,18 @@
   </div>
 </div>
 
+<div class="d-flex justify-content-end mb-2">
+  <span class="text-muted small">
+    Valeur totale :
+    <strong>
+      <%= number_to_currency(
+            @items.sum { |item| (item.fourniture.price_cents.to_i * item.quantity.to_i) } / 100.0,
+            unit: "€", format: "%n %u", separator: ",", delimiter: " "
+          ) %>
+    </strong>
+  </span>
+</div>
+
 
 <% if @items.empty? %>
   <p class="text-muted">Aucune fourniture dans la liste pour le moment.</p>
@@ -52,6 +64,15 @@
             <%= item.fourniture.quantity.presence || "—" %> <%= item.fourniture.unit %>
           </div>
 
+          <div class="mb-3 text-muted">
+            <strong>Prix :</strong>
+            <% if f.price_cents.present? %>
+              <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
+            <% else %>
+              —
+            <% end %>
+          </div>
+
           <div class="d-grid gap-2">
             <%= link_to "Mettre à jour",
                   edit_liste_achat_item_path(item, return_to: request.fullpath),
@@ -76,6 +97,7 @@
           <th>Nom</th>
           <th>Catégorie</th>
           <th class="text-nowrap">Quantité</th>
+          <th class="text-nowrap text-end">Prix</th>
           <th></th>
         </tr>
       </thead>
@@ -101,6 +123,14 @@
 
             <td class="text-nowrap text-muted">
               <%= item.fourniture.quantity.presence || "—" %> <%= item.fourniture.unit %>
+            </td>
+
+            <td class="text-end text-nowrap text-muted">
+              <% if item.fourniture.price_cents.present? %>
+                <%= number_to_currency(item.fourniture.price_cents / 100.0, unit: "€", format: "%n %u") %>
+              <% else %>
+                —
+              <% end %>
             </td>
 
             <td class="text-end text-nowrap">
