@@ -14,10 +14,7 @@
 <div class="d-flex justify-content-end mb-2">
   <span class="text-muted small">
     Valeur totale :
-    <strong>
-      <%= number_to_currency(@fournitures.sum(&:stock_value_cents) / 100.0,
-            unit: "€", format: "%n %u", separator: ",", delimiter: " ") %>
-    </strong>
+    <strong><%= number_to_currency(@total_value_cents / 100.0, unit: "€", format: "%n %u", separator: ",", delimiter: " ") %></strong>
   </span>
 </div>
 
@@ -64,6 +61,15 @@
             <% end %>
           </div>
 
+          <div class="mb-3 text-muted">
+            <strong>Valeur :</strong>
+            <% if f.price_cents.present? %>
+              <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
+            <% else %>
+              —
+            <% end %>
+          </div>
+
           <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
                 liste_achat_items_path(fourniture_id: f.id),
                 method: :post,
@@ -83,6 +89,7 @@
           <th>Catégorie</th>
           <th class="text-nowrap">Quantité</th>
           <th class="text-nowrap text-end">Prix</th>
+          <th class="text-nowrap text-end">Valeur</th>
           <th></th>
         </tr>
       </thead>
@@ -113,6 +120,14 @@
             <td class="text-end text-nowrap text-muted">
               <% if f.price_cents.present? %>
                 <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
+              <% else %>
+                —
+              <% end %>
+            </td>
+
+            <td class="text-end text-nowrap text-muted">
+              <% if f.price_cents.present? %>
+                <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
               <% else %>
                 —
               <% end %>

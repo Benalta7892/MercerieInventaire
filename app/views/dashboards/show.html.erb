@@ -135,6 +135,14 @@
                       <% end %>
                     </div>
 
+                    <div class="text-muted small mb-3">
+                      <strong>Valeur :</strong>
+                      <% if f.price_cents.present? %>
+                        <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
+                      <% else %>
+                        —
+                      <% end %>
+                    </div>
 
                     <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
                       liste_achat_items_path(fourniture_id: f.id),
@@ -154,6 +162,7 @@
                     <th>Catégorie</th>
                     <th class="text-nowrap">Quantité</th>
                     <th class="text-nowrap text-end">Prix</th>
+                    <th class="text-nowrap text-end">Valeur</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -183,6 +192,13 @@
                         <% end %>
                       </td>
 
+                      <td class="text-end text-nowrap text-muted">
+                        <% if f.price_cents.present? %>
+                          <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
+                        <% else %>
+                          —
+                        <% end %>
+                      </td>
 
                       <td class="text-end text-nowrap">
                         <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
@@ -270,6 +286,7 @@
                     <th>Catégorie</th>
                     <th class="text-nowrap">Quantité</th>
                     <th class="text-nowrap text-end">Prix</th>
+                    <th class="text-nowrap text-end">Valeur</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -299,6 +316,13 @@
                         <% end %>
                       </td>
 
+                      <td class="text-end text-nowrap text-muted">
+                        <% if f.price_cents.present? %>
+                          <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
+                        <% else %>
+                          —
+                        <% end %>
+                      </td>
 
                       <td class="text-end text-nowrap invisible">
                         <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,

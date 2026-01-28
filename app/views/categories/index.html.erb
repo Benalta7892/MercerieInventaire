@@ -34,6 +34,18 @@
             <strong>Nb fournitures :</strong> <%= category.fournitures.count %>
           </div>
 
+          <div class="text-muted small mb-2">
+            <strong>Valeur en stock :</strong>
+            <%= number_to_currency(
+                category.total_value_cents.to_f / 100.0,
+                unit: "€",
+                format: "%n %u",
+                separator: ",",
+                delimiter: " "
+              ) %>
+          </div>
+
+
           <div class="d-grid gap-2">
             <%= link_to "Modifier",
                   edit_category_path(category, return_to: request.fullpath),
@@ -57,6 +69,7 @@
         <tr>
           <th>Nom</th>
           <th class="text-nowrap">Nb fournitures</th>
+          <th class="text-end text-nowrap">Valeur en stock</th>
           <th></th>
         </tr>
       </thead>
@@ -73,6 +86,17 @@
             <td class="text-muted text-nowrap">
               <%= category.fournitures.count %>
             </td>
+
+            <td class="text-end text-nowrap text-muted">
+              <%= number_to_currency(
+              category.total_value_cents.to_f / 100.0,
+              unit: "€",
+              format: "%n %u",
+              separator: ",",
+              delimiter: " "
+            ) %>
+            </td>
+
 
             <td class="text-end text-nowrap">
               <%= link_to "Modifier",
