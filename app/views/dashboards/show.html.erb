@@ -11,6 +11,21 @@
   <% end %>
 <% end %>
 
+<div class="row g-3 mb-4">
+  <div class="col-12 col-md-4">
+    <%= link_to "Voir tout mon stock", fournitures_path(return_to: request.fullpath), class: "btn btn-outline-secondary w-100 py-3 fw-semibold" %>
+  </div>
+
+  <div class="col-12 col-md-4">
+    <%= link_to "Ajouter une fourniture", new_fourniture_path(return_to: request.fullpath), class: "btn btn-primary w-100 py-3 fw-semibold" %>
+  </div>
+
+  <div class="col-12 col-md-4">
+    <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-outline-success w-100 py-3 fw-semibold" %>
+  </div>
+</div>
+
+
 <div class="card shadow-sm mb-4">
   <div class="card-body">
     <div class="row g-3 align-items-stretch">
