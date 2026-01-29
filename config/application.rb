@@ -33,5 +33,6 @@ module MercerieInventaire
     config.i18n.available_locales = [:fr, :en]
 
     config.middleware.use Rack::Attack
+
   end
 end

@@ -11,6 +11,47 @@
   <% end %>
 <% end %>
 
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <div class="row g-3 align-items-stretch">
+
+      <%# <div class="col-12 col-lg-6 d-flex"> %>
+      <%# <div class="w-100 d-flex flex-column"> %>
+      <%# <h5 class="mb-3">Stock OK / Stock bas / Liste d'achat</h5> %>
+
+      <%# <div %>
+      <%# class="flex-grow-1 d-flex" %>
+      <%# data-controller="stock-polar" %>
+      <%# data-stock-polar-labels-value=" %>
+      <%#= h(@risk_action_labels.to_json) %>
+      <%# " %>
+      <%# data-stock-polar-values-value= %>
+      <%# " %>
+      <%#= h(@risk_action_values.to_json) %>
+      <%# "> %>
+      <%# <canvas class="w-100" data-stock-polar-target="canvas"></canvas> %>
+      <%# </div> %>
+      <%# </div> %>
+      <%# </div> %>
+
+      <div class="col-12 col-lg-6 d-flex">
+        <div class="w-100 d-flex flex-column">
+          <h5 class="mb-3">Valeur du stock par catégorie</h5>
+
+          <div
+            class="flex-grow-1 d-flex"
+            data-controller="stock-chart"
+            data-stock-chart-labels-value="<%= h(@stock_value_by_category_labels.to_json) %>"
+            data-stock-chart-values-value="<%= h(@stock_value_by_category_values.to_json) %>">
+            <canvas class="w-100" data-stock-chart-target="canvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
 <div class="row g-3 mb-4">
   <div class="col-6 col-lg-3">
@@ -18,13 +59,19 @@
       <%= link_to fournitures_path, class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
           <h5>Stock total</h5>
-          <div class="d-flex justify-content-between align-items-baseline">
-            <div class="fs-3 fw-bold text-primary"><%= @fournitures_count %></div>
-            <div class="text-muted">
-              Valeur totale :
-              <strong><%= number_to_currency(@stock_total_value_cents / 100.0, unit: "€") %></strong>
+          <div class="d-sm-flex justify-content-sm-between align-items-sm-baseline">
+            <div class="fs-3 fw-bold text-primary mb-2 mb-sm-0">
+              <%= @fournitures_count %>
+            </div>
+
+            <div class="text-muted text-sm-end">
+              <div>Valeur :</div>
+              <div class="fw-semibold">
+                <%= number_to_currency(@stock_total_value_cents / 100.0, unit: "€") %>
+              </div>
             </div>
           </div>
+
         </div>
       <% end %>
     </div>
@@ -36,13 +83,19 @@
           class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
           <h5>Stocks bas</h5>
-          <div class="d-flex justify-content-between align-items-baseline">
-            <div class="fs-3 fw-bold text-warning"><%= @stock_bas_count %></div>
-            <div class="text-muted">
-              Valeur totale :
-              <strong><%= number_to_currency(@stock_bas_value_cents / 100.0, unit: "€") %></strong>
+          <div class="d-sm-flex justify-content-sm-between align-items-sm-baseline">
+            <div class="fs-3 fw-bold text-warning mb-2 mb-sm-0">
+              <%= @stock_bas_count %>
+            </div>
+
+            <div class="text-muted text-sm-end">
+              <div>Valeur :</div>
+              <div class="fw-semibold">
+                <%= number_to_currency(@stock_bas_value_cents / 100.0, unit: "€") %>
+              </div>
             </div>
           </div>
+
         </div>
       <% end %>
     </div>
@@ -54,13 +107,19 @@
           class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
           <h5>À acheter</h5>
-          <div class="d-flex justify-content-between align-items-baseline">
-            <div class="fs-3 fw-bold text-success"><%= @a_acheter_count %></div>
-            <div class="text-muted">
-              Valeur totale :
-              <strong><%= number_to_currency(@a_acheter_value_cents / 100.0, unit: "€") %></strong>
+          <div class="d-sm-flex justify-content-sm-between align-items-sm-baseline">
+            <div class="fs-3 fw-bold text-success mb-2 mb-sm-0">
+              <%= @a_acheter_count %>
+            </div>
+
+            <div class="text-muted text-sm-end">
+              <div>Valeur :</div>
+              <div class="fw-semibold">
+                <%= number_to_currency(@a_acheter_value_cents / 100.0, unit: "€") %>
+              </div>
             </div>
           </div>
+
         </div>
       <% end %>
     </div>
@@ -71,8 +130,12 @@
       <%= link_to categories_path,
           class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
-          <h5>Catégories</h5>
-          <div class="d-flex justify-content-between align-items-baseline">
+          <h5>
+            <span class="d-none d-sm-inline">Catégories</span>
+            <span class="d-inline d-sm-none">Catég.</span>
+          </h5>
+
+          <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-baseline gap-1">
             <div class="fs-3 fw-bold"><%= @categories_count %></div>
           </div>
         </div>
