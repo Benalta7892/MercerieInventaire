@@ -4,7 +4,7 @@
   <%= form_with url: fournitures_path, method: :get, local: true, class: "d-flex mb-4" do %>
     <%= text_field_tag :query,
           params[:query],
-          class: "form-control me-2",
+          class: "form-control me-2 bg-white",
           placeholder: "Rechercher…" %>
 
     <%= submit_tag "Rechercher", class: "btn btn-outline-primary" %>
@@ -13,7 +13,7 @@
 
 <div class="row g-3 mb-4">
   <div class="col-12 col-md-4">
-    <%= link_to "Voir tout mon stock", fournitures_path(return_to: request.fullpath), class: "btn btn-outline-secondary w-100 py-3 fw-semibold" %>
+    <%= link_to "Voir tout mon stock", fournitures_path(return_to: request.fullpath), class: "btn btn-outline-secondary w-100 py-3 fw-semibold bg-white" %>
   </div>
 
   <div class="col-12 col-md-4">
@@ -21,12 +21,12 @@
   </div>
 
   <div class="col-12 col-md-4">
-    <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-outline-success w-100 py-3 fw-semibold" %>
+    <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-outline-success w-100 py-3 fw-semibold bg-white" %>
   </div>
 </div>
 
 
-<div class="card shadow-sm mb-4">
+<div class="card shadow-sm mb-4 bg-white">
   <div class="card-body">
     <div class="row g-3 align-items-stretch">
 
@@ -70,7 +70,7 @@
 
 <div class="row g-3 mb-4">
   <div class="col-6 col-lg-3">
-    <div class="card shadow-sm h-100">
+    <div class="card shadow-sm h-100 bg-white">
       <%= link_to fournitures_path, class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
           <h5>Stock total</h5>
@@ -93,7 +93,7 @@
   </div>
 
   <div class="col-6 col-lg-3">
-    <div class="card shadow-sm h-100">
+    <div class="card shadow-sm h-100 bg-white">
       <%= link_to stock_bas_fournitures_path,
           class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
@@ -117,7 +117,7 @@
   </div>
 
   <div class="col-6 col-lg-3">
-    <div class="card shadow-sm h-100">
+    <div class="card shadow-sm h-100 bg-white">
       <%= link_to liste_achat_path,
           class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
@@ -141,7 +141,7 @@
   </div>
 
   <div class="col-6 col-lg-3">
-    <div class="card shadow-sm h-100">
+    <div class="card shadow-sm h-100 bg-white">
       <%= link_to categories_path,
           class: "text-decoration-none text-reset d-block h-100" do %>
         <div class="card-body">
@@ -162,8 +162,8 @@
   <div class="g-3 mb-4">
     <!-- Stock bas -->
     <div class="col-12 col-lg-6 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
+      <div class="card shadow-sm bg-white">
+        <div class="card-body bg-white">
 
           <div class="row g-2 align-items-center mb-3">
             <div class="col-12 col-sm">
@@ -186,7 +186,7 @@
             <div class="d-block d-sm-none">
               <% @stock_bas.each do |f| %>
                 <div class="card border-0 shadow-sm mb-3">
-                  <div class="card-body">
+                  <div class="card-body bg-white">
 
                     <%= link_to f.name,
                       fourniture_path(f, return_to: request.fullpath),
@@ -248,7 +248,7 @@
                 <tbody>
                   <% @stock_bas.each do |f| %>
                     <tr>
-                      <td>
+                      <td class="bg-white">
                         <%= link_to f.name,
                           fourniture_path(f, return_to: request.fullpath),
                           class: "text-decoration-none fw-semibold" %>
@@ -258,11 +258,11 @@
                         <% end %>
                       </td>
 
-                      <td class="text-muted"><%= f.category&.name || "—" %></td>
+                      <td class="text-muted bg-white"><%= f.category&.name || "—" %></td>
 
-                      <td class="text-nowrap text-muted"><%= f.quantity %> <%= f.unit %></td>
+                      <td class="text-nowrap text-muted bg-white"><%= f.quantity %> <%= f.unit %></td>
 
-                      <td class="text-end text-nowrap text-muted">
+                      <td class="text-end text-nowrap text-muted bg-white">
                         <% if f.price_cents.present? %>
                           <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
                         <% else %>
@@ -270,7 +270,7 @@
                         <% end %>
                       </td>
 
-                      <td class="text-end text-nowrap text-muted">
+                      <td class="text-end text-nowrap text-muted bg-white">
                         <% if f.price_cents.present? %>
                           <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
                         <% else %>
@@ -278,7 +278,7 @@
                         <% end %>
                       </td>
 
-                      <td class="text-end text-nowrap">
+                      <td class="text-end text-nowrap bg-white">
                         <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
                           liste_achat_items_path(fourniture_id: f.id),
                           method: :post,
@@ -298,8 +298,8 @@
 
     <!-- Derniers ajouts -->
     <div class="col-12 col-lg-6">
-      <div class="card shadow-sm">
-        <div class="card-body">
+      <div class="card shadow-sm bg-white">
+        <div class="card-body bg-white">
 
           <div class="row g-2 align-items-center mb-3">
             <div class="col-12 col-sm">
@@ -322,7 +322,7 @@
             <div class="d-block d-sm-none">
               <% @derniers_ajouts.each do |f| %>
                 <div class="card border-0 shadow-sm mb-3">
-                  <div class="card-body">
+                  <div class="card-body bg-white">
 
                     <%= link_to f.name,
                       fourniture_path(f, return_to: request.fullpath),
@@ -372,7 +372,7 @@
                 <tbody>
                   <% @derniers_ajouts.each do |f| %>
                     <tr>
-                      <td>
+                      <td class="bg-white">
                         <%= link_to f.name,
                           fourniture_path(f, return_to: request.fullpath),
                           class: "text-decoration-none fw-semibold" %>
@@ -382,11 +382,11 @@
                         <% end %>
                       </td>
 
-                      <td class="text-muted"><%= f.category&.name || "—" %></td>
+                      <td class="text-muted bg-white"><%= f.category&.name || "—" %></td>
 
-                      <td class="text-nowrap text-muted"><%= f.quantity %> <%= f.unit %></td>
+                      <td class="text-nowrap text-muted bg-white"><%= f.quantity %> <%= f.unit %></td>
 
-                      <td class="text-end text-nowrap text-muted">
+                      <td class="text-end text-nowrap text-muted bg-white">
                         <% if f.price_cents.present? %>
                           <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
                         <% else %>
@@ -394,7 +394,7 @@
                         <% end %>
                       </td>
 
-                      <td class="text-end text-nowrap text-muted">
+                      <td class="text-end text-nowrap text-muted bg-white">
                         <% if f.price_cents.present? %>
                           <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
                         <% else %>
@@ -402,7 +402,7 @@
                         <% end %>
                       </td>
 
-                      <td class="text-end text-nowrap invisible">
+                      <td class="text-end text-nowrap invisible bg-white">
                         <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
                           liste_achat_items_path(fourniture_id: f.id),
                           method: :post,
@@ -425,7 +425,7 @@
 
   <div class="row g-3">
     <div class="col-12 col-md-4">
-      <%= link_to "Voir tout mon stock", fournitures_path(return_to: request.fullpath), class: "btn btn-outline-secondary w-100 py-3 fw-semibold" %>
+      <%= link_to "Voir tout mon stock", fournitures_path(return_to: request.fullpath), class: "btn btn-outline-secondary w-100 py-3 fw-semibold bg-white" %>
     </div>
 
     <div class="col-12 col-md-4">
@@ -433,6 +433,6 @@
     </div>
 
     <div class="col-12 col-md-4">
-      <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-outline-success w-100 py-3 fw-semibold" %>
+      <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-outline-success w-100 py-3 fw-semibold bg-white" %>
     </div>
   </div>
