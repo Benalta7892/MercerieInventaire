@@ -2,10 +2,10 @@
   <h1 class="mb-0"><%= @fourniture.name %></h1>
 
   <% back = params[:return_to].presence || dashboard_path %>
-  <%= link_to "← Retour", back, class: "btn btn-outline-secondary btn-sm" %>
+  <%= link_to "← Retour", back, class: "btn btn-secondary btn-sm" %>
 </div>
 
-<div class="card shadow-sm">
+<div class="card shadow-sm bg-white">
   <div class="card-body">
     <p><strong>Catégorie :</strong> <%= @fourniture.category&.name || "—" %></p>
     <p><strong>Stock :</strong> <%= @fourniture.quantity %> <%= @fourniture.unit %></p>
@@ -35,16 +35,16 @@
         liste_achat_items_path(fourniture_id: @fourniture.id),
         method: :post,
         form_class: "w-100",
-        class: "btn btn-outline-success btn-sm w-100" %>
+        class: "btn btn-success btn-sm w-100" %>
     </div>
 
     <%= link_to "Modifier",
           edit_fourniture_path(@fourniture, return_to: params[:return_to], cancel_to: "show"),
-          class: "btn btn-outline-secondary btn-sm" %>
+          class: "btn btn-secondary btn-sm" %>
 
     <%= link_to "Supprimer",
           fourniture_path(@fourniture),
-          class: "btn btn-outline-danger btn-sm",
+          class: "btn btn-danger btn-sm",
           data: { turbo_method: :delete, turbo_confirm: "Supprimer cette fourniture ?" } %>
   </div>
 </div>

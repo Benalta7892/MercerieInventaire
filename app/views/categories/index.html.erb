@@ -7,7 +7,7 @@
     <div class="d-grid d-sm-block">
       <%= link_to "Nouvelle catégorie",
             new_category_path,
-            class: "btn btn-outline-primary btn-sm w-100" %>
+            class: "btn btn-primary btn-sm w-100" %>
     </div>
   </div>
 </div>
@@ -21,7 +21,7 @@
   <!-- ===== MOBILE (< sm) : CARTES ===== -->
   <div class="d-block d-sm-none">
     <% @categories.each do |category| %>
-      <div class="card shadow-sm mb-3">
+      <div class="card shadow-sm mb-3 bg-white">
         <div class="card-body">
 
           <div class="mb-2">
@@ -63,55 +63,61 @@
   </div>
 
   <!-- ===== DESKTOP (>= sm) : TABLE ===== -->
-  <div class="table-responsive d-none d-sm-block">
-    <table class="table align-middle">
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th class="text-nowrap">Nb fournitures</th>
-          <th class="text-end text-nowrap">Valeur en stock</th>
-          <th></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% @categories.each do |category| %>
-          <tr>
-            <td>
-              <%= link_to category.name,
+  <div class="d-none d-sm-block card shadow-sm mb-4 bg-white">
+    <div class="card-body">
+      <div class="table-responsive">
+
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th class="text-nowrap">Nb fournitures</th>
+              <th class="text-end text-nowrap">Valeur en stock</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr>
+                <td class="bg-white">
+                  <%= link_to category.name,
                     category_path(category, return_to: request.fullpath),
                     class: "text-decoration-none fw-semibold" %>
-            </td>
+                </td>
 
-            <td class="text-muted text-nowrap">
-              <%= category.fournitures.count %>
-            </td>
+                <td class="text-muted text-nowrap bg-white">
+                  <%= category.fournitures.count %>
+                </td>
 
-            <td class="text-end text-nowrap text-muted">
-              <%= number_to_currency(
+                <td class="text-end text-nowrap text-muted bg-white">
+                  <%= number_to_currency(
               category.total_value_cents.to_f / 100.0,
               unit: "€",
               format: "%n %u",
               separator: ",",
               delimiter: " "
             ) %>
-            </td>
+                </td>
 
 
-            <td class="text-end text-nowrap">
-              <%= link_to "Modifier",
+                <td class="text-end text-nowrap bg-white">
+                  <%= link_to "Modifier",
                     edit_category_path(category, return_to: request.fullpath),
                     class: "btn btn-sm btn-outline-secondary" %>
 
-              <%= link_to "Supprimer",
+                  <%= link_to "Supprimer",
                     category_path(category),
                     class: "btn btn-sm btn-outline-danger",
                     data: { turbo_method: :delete, turbo_confirm: "Supprimer cette catégorie ?" } %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
 <% end %>
