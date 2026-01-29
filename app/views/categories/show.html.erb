@@ -7,15 +7,15 @@
 
   <div class="col-12 col-sm-auto">
     <div class="d-grid gap-2 d-sm-flex">
-      <%= link_to "← Retour", back, class: "btn btn-outline-secondary btn-sm" %>
+      <%= link_to "← Retour", back, class: "btn btn-secondary btn-sm" %>
 
       <%= link_to "Ajouter une fourniture",
             new_fourniture_path(category_id: @category.id, return_to: request.fullpath),
-            class: "btn btn-outline-primary btn-sm" %>
+            class: "btn btn-primary btn-sm" %>
 
       <%= link_to "Liste d'achats",
             liste_achat_path,
-            class: "btn btn-outline-success btn-sm" %>
+            class: "btn btn-success btn-sm" %>
     </div>
   </div>
 </div>
@@ -43,7 +43,7 @@
   <!-- ===== MOBILE (< sm) : CARTES ===== -->
   <div class="d-block d-sm-none">
     <% @category.fournitures.order(:name).each do |f| %>
-      <div class="card shadow-sm mb-3">
+      <div class="card shadow-sm mb-3 bg-white">
         <div class="card-body">
 
           <div class="mb-2">
@@ -73,62 +73,68 @@
   </div>
 
   <!-- ===== DESKTOP (>= sm) : TABLE ===== -->
-  <div class="table-responsive d-none d-sm-block">
-    <table class="table align-middle">
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th class="text-nowrap">Quantité</th>
-          <th class="text-end text-nowrap">Prix</th>
-          <th class="text-end text-nowrap">Valeur</th>
-          <th></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% @category.fournitures.order(:name).each do |f| %>
-          <tr>
-            <td>
-              <%= link_to f.name,
+  <div class="d-none d-sm-block card shadow-sm mb-4 bg-white">
+    <div class="card-body">
+      <div class="table-responsive">
+
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th class="text-nowrap">Quantité</th>
+              <th class="text-end text-nowrap">Prix</th>
+              <th class="text-end text-nowrap">Valeur</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @category.fournitures.order(:name).each do |f| %>
+              <tr>
+                <td class="bg-white">
+                  <%= link_to f.name,
                     fourniture_path(f, return_to: request.fullpath, origin: params[:origin]),
                     class: "text-decoration-none fw-semibold" %>
 
-              <% if f.description.present? %>
-                <div class="text-muted small"><%= truncate(f.description, length: 60) %></div>
-              <% end %>
-            </td>
+                  <% if f.description.present? %>
+                    <div class="text-muted small"><%= truncate(f.description, length: 60) %></div>
+                  <% end %>
+                </td>
 
-            <td class="text-nowrap text-muted">
-              <%= f.quantity %> <%= f.unit %>
-            </td>
+                <td class="text-nowrap text-muted bg-white">
+                  <%= f.quantity %> <%= f.unit %>
+                </td>
 
-            <td class="text-end text-nowrap text-muted">
-              <% if f.price_cents.present? %>
-                <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u", separator: ",", delimiter: " ") %>
-              <% else %>
-                —
-              <% end %>
-            </td>
+                <td class="text-end text-nowrap text-muted bg-white">
+                  <% if f.price_cents.present? %>
+                    <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u", separator: ",", delimiter: " ") %>
+                  <% else %>
+                    —
+                  <% end %>
+                </td>
 
-            <td class="text-end text-nowrap text-muted">
-              <% if f.price_cents.present? %>
-                <%= number_to_currency((f.price_cents.to_i * f.quantity.to_f) / 100.0,
+                <td class="text-end text-nowrap text-muted bg-white">
+                  <% if f.price_cents.present? %>
+                    <%= number_to_currency((f.price_cents.to_i * f.quantity.to_f) / 100.0,
           unit: "€", format: "%n %u", separator: ",", delimiter: " ") %>
-              <% else %>
-                —
-              <% end %>
-            </td>
+                  <% else %>
+                    —
+                  <% end %>
+                </td>
 
-            <td class="text-end text-nowrap">
-              <%= button_to "Ajouter à la liste",
+                <td class="text-end text-nowrap bg-white">
+                  <%= button_to "Ajouter à la liste",
                     liste_achat_items_path(fourniture_id: f.id),
                     method: :post,
                     class: "btn btn-sm btn-outline-success" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
 <% end %>

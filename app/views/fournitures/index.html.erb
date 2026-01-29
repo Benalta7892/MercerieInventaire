@@ -2,8 +2,8 @@
   <h2 class="mb-0">Fournitures</h2>
 
   <div class="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto">
-    <%= link_to "Voir tous les stocks bas", stock_bas_fournitures_path, class: "btn btn-sm btn-outline-warning w-100 w-sm-auto" %>
-    <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-sm btn-outline-success w-100 w-sm-auto" %>
+    <%= link_to "Voir tous les stocks bas", stock_bas_fournitures_path, class: "btn btn-sm btn-warning w-100 w-sm-auto" %>
+    <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-sm btn-success w-100 w-sm-auto" %>
     <%= link_to "Ajouter une fourniture", new_fourniture_path, class: "btn btn-sm btn-primary w-100 w-sm-auto" %>
   </div>
 </div>
@@ -20,18 +20,18 @@
     <%= text_field_tag :query,
           params[:query],
           placeholder: "Rechercher…",
-          class: "form-control" %>
+          class: "form-control bg-white" %>
   </div>
 
   <div class="col-12 col-md-4">
     <%= select_tag :category_id,
           options_from_collection_for_select(@categories, :id, :name, params[:category_id]),
           include_blank: "Toutes les catégories",
-          class: "form-select" %>
+          class: "form-select bg-white" %>
   </div>
 
   <div class="col-12 col-md-3 d-flex gap-2">
-    <%= submit_tag "Filtrer", class: "btn btn-outline-secondary w-100" %>
+    <%= submit_tag "Filtrer", class: "btn btn-outline-secondary w-100 bg-white" %>
 
     <%= link_to "Reset",
           fournitures_path,
@@ -48,9 +48,9 @@
 
   <%# ===== MOBILE (< 576px) : cartes en colonne ===== %>
   <div class="d-sm-none">
-    <div class="d-flex flex-column gap-2">
+    <div class="d-flex flex-column">
       <% @fournitures.each do |f| %>
-        <div class="card shadow-sm">
+        <div class="card shadow-sm mb-3 bg-white">
           <div class="card-body">
 
             <div class="fw-semibold mb-1">
@@ -105,68 +105,71 @@
   </div>
 
   <%# ===== DESKTOP (>= 576px) : table ===== %>
-  <div class="d-none d-sm-block">
-    <div class="table-responsive">
-      <table class="table align-middle">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Catégorie</th>
-            <th class="text-nowrap">Quantité</th>
-            <th class="text-nowrap text-end">Prix</th>
-            <th class="text-nowrap text-end">Valeur</th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @fournitures.each do |f| %>
+  <div class="d-none d-sm-block card shadow-sm mb-4 bg-white">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
             <tr>
-              <td>
-                <%= link_to f.name,
+              <th>Nom</th>
+              <th>Catégorie</th>
+              <th class="text-nowrap">Quantité</th>
+              <th class="text-nowrap text-end">Prix</th>
+              <th class="text-nowrap text-end">Valeur</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @fournitures.each do |f| %>
+              <tr>
+                <td class="bg-white">
+                  <%= link_to f.name,
                       fourniture_path(f, return_to: request.fullpath, origin: params[:return_to]),
                       class: "text-decoration-none fw-semibold" %>
 
-                <% if f.description.present? %>
-                  <div class="text-muted small">
-                    <%= truncate(f.description, length: 60) %>
-                  </div>
-                <% end %>
-              </td>
+                  <% if f.description.present? %>
+                    <div class="text-muted small">
+                      <%= truncate(f.description, length: 60) %>
+                    </div>
+                  <% end %>
+                </td>
 
-              <td class="text-muted"><%= f.category&.name || "—" %></td>
+                <td class="text-muted bg-white"><%= f.category&.name || "—" %></td>
 
-              <td class="text-nowrap text-muted">
-                <%= f.quantity %> <%= f.unit %>
-              </td>
+                <td class="text-nowrap text-muted bg-white">
+                  <%= f.quantity %> <%= f.unit %>
+                </td>
 
-              <td class="text-end text-nowrap text-muted">
-                <% if f.price_cents.present? %>
-                  <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
-                <% else %>
-                  —
-                <% end %>
-              </td>
+                <td class="text-end text-nowrap text-muted bg-white">
+                  <% if f.price_cents.present? %>
+                    <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
+                  <% else %>
+                    —
+                  <% end %>
+                </td>
 
-              <td class="text-end text-nowrap text-muted">
-                <% if f.price_cents.present? %>
-                  <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
-                <% else %>
-                  —
-                <% end %>
-              </td>
+                <td class="text-end text-nowrap text-muted bg-white">
+                  <% if f.price_cents.present? %>
+                    <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
+                  <% else %>
+                    —
+                  <% end %>
+                </td>
 
-              <td class="text-end text-nowrap">
-                <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
+                <td class="text-end text-nowrap bg-white">
+                  <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
                       liste_achat_items_path(fourniture_id: f.id),
                       method: :post,
                       class: "btn btn-sm btn-outline-success" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
+
   </div>
 
 <% end %>

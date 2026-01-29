@@ -5,8 +5,8 @@
 
   <div class="col-12 col-sm-auto">
     <div class="d-grid gap-2 d-sm-flex">
-      <%= link_to "Fournitures", fournitures_path, class: "btn btn-outline-primary btn-sm" %>
-      <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-outline-success btn-sm" %>
+      <%= link_to "Fournitures", fournitures_path, class: "btn btn-primary btn-sm" %>
+      <%= link_to "Liste d'achats", liste_achat_path, class: "btn btn-success btn-sm" %>
     </div>
   </div>
 </div>
@@ -27,7 +27,7 @@
   <!-- ===== MOBILE < 500px : CARTES ===== -->
   <div class="d-block d-sm-none">
     <% @fournitures.each do |f| %>
-      <div class="card shadow-sm mb-3">
+      <div class="card shadow-sm mb-3 bg-white">
         <div class="card-body">
 
           <div class="mb-2">
@@ -81,68 +81,73 @@
   </div>
 
   <!-- ===== DESKTOP ≥ 500px : TABLE ===== -->
-  <div class="table-responsive d-none d-sm-block">
-    <table class="table align-middle">
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Catégorie</th>
-          <th class="text-nowrap">Quantité</th>
-          <th class="text-nowrap text-end">Prix</th>
-          <th class="text-nowrap text-end">Valeur</th>
-          <th></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% @fournitures.each do |f| %>
-          <tr>
-            <td>
-              <%= link_to f.name,
+  <div class="d-none d-sm-block card shadow-sm mb-4 bg-white">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Catégorie</th>
+              <th class="text-nowrap">Quantité</th>
+              <th class="text-nowrap text-end">Prix</th>
+              <th class="text-nowrap text-end">Valeur</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @fournitures.each do |f| %>
+              <tr>
+                <td class="bg-white">
+                  <%= link_to f.name,
                     fourniture_path(f, return_to: request.fullpath),
                     class: "text-decoration-none fw-semibold" %>
 
-              <% if f.description.present? %>
-                <div class="text-muted small">
-                  <%= truncate(f.description, length: 60) %>
-                </div>
-              <% end %>
-            </td>
+                  <% if f.description.present? %>
+                    <div class="text-muted small">
+                      <%= truncate(f.description, length: 60) %>
+                    </div>
+                  <% end %>
+                </td>
 
-            <td class="text-muted">
-              <%= f.category&.name || "—" %>
-            </td>
+                <td class="text-muted bg-white">
+                  <%= f.category&.name || "—" %>
+                </td>
 
-            <td class="text-nowrap text-muted">
-              <%= f.quantity %> <%= f.unit %>
-            </td>
+                <td class="text-nowrap text-muted bg-white">
+                  <%= f.quantity %> <%= f.unit %>
+                </td>
 
-            <td class="text-end text-nowrap text-muted">
-              <% if f.price_cents.present? %>
-                <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
-              <% else %>
-                —
-              <% end %>
-            </td>
+                <td class="text-end text-nowrap text-muted bg-white">
+                  <% if f.price_cents.present? %>
+                    <%= number_to_currency(f.price_cents / 100.0, unit: "€", format: "%n %u") %>
+                  <% else %>
+                    —
+                  <% end %>
+                </td>
 
-            <td class="text-end text-nowrap text-muted">
-              <% if f.price_cents.present? %>
-                <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
-              <% else %>
-                —
-              <% end %>
-            </td>
+                <td class="text-end text-nowrap text-muted bg-white">
+                  <% if f.price_cents.present? %>
+                    <%= number_to_currency(f.stock_value_cents / 100.0, unit: "€", format: "%n %u") %>
+                  <% else %>
+                    —
+                  <% end %>
+                </td>
 
-            <td class="text-end text-nowrap">
-              <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
+                <td class="text-end text-nowrap bg-white">
+                  <%= button_to '<i class="fa-solid fa-cart-shopping" style="color: #1edd88;"></i>'.html_safe,
                     liste_achat_items_path(fourniture_id: f.id),
                     method: :post,
                     class: "btn btn-sm btn-outline-success" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
 <% end %>

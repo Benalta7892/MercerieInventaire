@@ -1,11 +1,11 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h1 class="h4 fw-bold mb-0">Nouvelle catégorie</h1>
-  <%= link_to "← Retour", categories_path, class: "btn btn-outline-secondary btn-sm" %>
+  <%= link_to "← Retour", categories_path, class: "btn btn-secondary btn-sm" %>
 </div>
 
 <div class="row justify-content-center">
   <div class="col-12 col-lg-6">
-    <div class="card shadow-sm">
+    <div class="card shadow-sm bg-light">
       <div class="card-body p-4">
         <%= simple_form_for @category do |f| %>
           <%= f.error_notification %>
@@ -13,12 +13,12 @@
           <div class="mb-3">
             <%= f.input :name,
                         label: "Nom de la catégorie",
-                        input_html: { class: "form-control" },
+                        input_html: { class: "form-control bg-white" },
                         label_html: { class: "form-label" } %>
           </div>
 
           <div class="d-flex gap-2">
-            <%= f.button :submit, "Créer la catégorie", class: "btn btn-primary" %>
+            <%= f.button :submit, "Créer", class: "btn btn-primary" %>
             <%= link_to "Annuler", categories_path, class: "btn btn-outline-secondary" %>
           </div>
         <% end %>
